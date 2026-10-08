@@ -176,7 +176,7 @@ function details(lang, c) {
   const rows = [
     [L.price, priceText(lang, o)],
     [L.quantity, esc(fill(L.quantityText, { limit: o.limit, unit: o.limitUnit[lang] }))],
-    [L.contents, `${esc(o.box[lang])}${ja ? "／" : ", "}${esc(ja ? o.servings.ja : o.servings.en.toLowerCase())}${ja ? `／全${itemCount(o)}品` : `, ${itemCount(o)} dishes`}`],
+    [L.contents, `${esc(o.box[lang])}${ja ? "／" : ", "}${esc(ja ? o.servings.ja : o.servings.en.toLowerCase())}${ja ? `／${nw(`全${itemCount(o)}品`)}` : `, ${itemCount(o)} dishes`}`],
     [L.orderPeriod, `${range(lang, d(o.order.start), d(o.order.end))}<br><span class="note">${esc(o.order.endNote[lang])}</span>`],
     [L.pickup, `${nw(d(o.pickup.date))}${ja ? "　" : ", "}<span class="num">${range(lang, time(o.pickup.open), time(o.pickup.close))}</span><br>${esc(o.pickup.place[lang])}`],
     [L.payment, esc(o.payment[lang])],

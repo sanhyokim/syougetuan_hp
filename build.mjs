@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 import { homePage } from "./src/templates.mjs";
 import { osechiPage, itemCount } from "./src/osechi.mjs";
 import { imageSize, parseDate } from "./src/util.mjs";
-import { joinWords } from "./src/copy.mjs";
+import { phraseBreaks } from "./src/phrase.mjs";
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
 function readJson(name) {
@@ -18,7 +18,7 @@ function readJson(name) {
   }
 }
 const c = readJson("site.config.json");
-c.osechi = joinWords(readJson("osechi.json")); // 「ひと｜つ」のような折り返しを防ぐ（本文と同じ処理）
+c.osechi = readJson("osechi.json");
 // 以前の書き方（seasonalPage.state）も読めるようにしておく
 if (c.seasonalPage.status === undefined && c.seasonalPage.state !== undefined) c.seasonalPage.status = c.seasonalPage.state;
 
@@ -118,7 +118,7 @@ function context(lang, path, counterpart) {
 function write(path, html) {
   const file = join(ROOT, path, "index.html");
   mkdirSync(dirname(file), { recursive: true });
-  writeFileSync(file, html);
+  writeFileSync(file, path.startsWith("en/") ? html : phraseBreaks(html));
   console.log("生成:", join(path, "index.html"));
 }
 

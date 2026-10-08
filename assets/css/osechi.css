@@ -13,6 +13,8 @@ html:has(.page--osechi) { background: var(--noren); }
 .page--osechi { background: var(--noren); color: var(--sumi); }
 .page--osechi :focus-visible { outline-color: var(--sumi); }
 .page--osechi .note { color: var(--enso-deep); }
+/* 箇条と表も、本文と同じく文節の切れ目（<wbr>）でだけ折り返す */
+html[lang="ja"] .page--osechi li, html[lang="ja"] .page--osechi td, html[lang="ja"] .page--osechi caption { word-break: keep-all; overflow-wrap: anywhere; }
 
 /* ------------------------------------------------------------ ヘッダー（昼の地） */
 .page--osechi .site-header--page { background: var(--noren); border-bottom: 1px solid var(--o-rule); }
@@ -89,7 +91,6 @@ html[lang="en"] .o-name__series { writing-mode: horizontal-tb; font-family: var(
   margin: 2rem 0 0;
   font-size: 1.0625rem;
   letter-spacing: .16em;
-  word-break: auto-phrase;
 }
 html[lang="en"] .o-hero__line { font-style: italic; font-size: 1.25rem; letter-spacing: .01em; max-inline-size: 16em; }
 .o-hero__meta {
@@ -196,7 +197,6 @@ html[lang="en"] .o-item__name { letter-spacing: .01em; }
   font-size: .9375rem;
   line-height: 1.8;
   color: var(--kuchinashi-deep);
-  word-break: auto-phrase;
 }
 @media (min-width: 960px) {
   .o-menu .lead { grid-column: 2 / 12; }
@@ -212,7 +212,6 @@ html[lang="en"] .o-item__name { letter-spacing: .01em; }
 @media (min-width: 960px) {
   .o-details .o-info { grid-column: 2 / 10; }
 }
-.o-info dd { word-break: auto-phrase; }
 .o-info .num { white-space: nowrap; }
 html[lang="ja"] .page--osechi .info > div { grid-template-columns: 7.5em 1fr; }
 @media (min-width: 960px) { .page--osechi .info { margin-left: 0; } }
