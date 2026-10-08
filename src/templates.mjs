@@ -5,8 +5,8 @@ import { copy } from "./copy.mjs";
 const FONTS =
   "https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Zen+Old+Mincho:wght@400;600&display=swap";
 
-const telHref = (tel) => `tel:${tel.replace(/[^0-9+]/g, "")}`;
-const abs = (c, path) => new URL(path, c.siteUrl).href;
+export const telHref = (tel) => `tel:${tel.replace(/[^0-9+]/g, "")}`;
+export const abs = (c, path) => new URL(path, c.siteUrl).href;
 const other = (lang) => (lang === "ja" ? "en" : "ja");
 
 // ---------------------------------------------------------------- 構造化データ
@@ -63,7 +63,7 @@ export function jsonLd(lang, c, ctx) {
 }
 
 // ---------------------------------------------------------------- head
-function head(lang, c, ctx, t, { title = t.title, description = t.description, intro = false } = {}) {
+export function head(lang, c, ctx, t, { title = t.title, description = t.description, intro = false, introKey = "sg-intro", ld = null, css = [] } = {}) {
   const alternates = ctx.alternates
     .map((alt) => `<link rel="alternate" hreflang="${alt.lang}" href="${esc(alt.href)}">`)
     .join("\n  ");
@@ -75,7 +75,7 @@ function head(lang, c, ctx, t, { title = t.title, description = t.description, i
   }
   const inline = `(function(d){var M=${JSON.stringify(monthMap)},r=d.documentElement,s=M[new Date().getMonth()+1];if(s)r.setAttribute("data-season",s);${
     intro
-      ? `try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&!sessionStorage.getItem("sg-intro")){r.classList.add("is-intro");sessionStorage.setItem("sg-intro","1")}}catch(e){}`
+      ? `try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&!sessionStorage.getItem("${introKey}")){r.classList.add("is-intro");sessionStorage.setItem("${introKey}","1")}}catch(e){}`
       : ""
   }r.classList.add("js")})(document);`;
 
@@ -106,29 +106,29 @@ function head(lang, c, ctx, t, { title = t.title, description = t.description, i
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="${FONTS}">
-  <link rel="stylesheet" href="${ctx.base}assets/css/site.css">
+  <link rel="stylesheet" href="${ctx.base}assets/css/site.css">${css.map((f) => `\n  <link rel="stylesheet" href="${ctx.base}${f}">`).join("")}
   <script>${inline}</script>
   <script type="application/ld+json">
-${jsonLd(lang, c, ctx)}
+${ld ?? jsonLd(lang, c, ctx)}
   </script>
 </head>`;
 }
 
 // ---------------------------------------------------------------- 季節ページの告知帯・ナビ
-const seasonalOpen = (c) => c.seasonalPage.state === "open";
+export const seasonalOpen = (c) => c.seasonalPage.status === "open";
 
 function notice(lang, c, ctx) {
   if (!seasonalOpen(c)) return "";
-  return `<p class="notice"><a href="${ctx.root}${c.seasonalPage.path}">${esc(c.seasonalPage.notice[lang])}</a></p>`;
+  return `<p class="notice"><a href="${ctx.root}${c.seasonalPage.path}">${esc(c.osechi.notice[lang])}</a></p>`;
 }
 
-function header(lang, c, ctx, t, { onTop = true } = {}) {
+export function header(lang, c, ctx, t, { onTop = true, current = false } = {}) {
   const h = onTop ? "#" : `${ctx.home}#`;
   const items = Object.entries(t.nav)
     .map(([id, label]) => `<li><a href="${h}${id}">${esc(label)}</a></li>`)
     .join("\n          ");
   const seasonal = seasonalOpen(c)
-    ? `\n          <li><a href="${ctx.root}${c.seasonalPage.path}">${esc(c.seasonalPage.nav[lang])}</a></li>`
+    ? `\n          <li><a href="${current ? "./" : ctx.root + c.seasonalPage.path}"${current ? ' aria-current="page"' : ""}>${esc(c.osechi.nav[lang])}</a></li>`
     : "";
   return `<header class="site-header${onTop ? "" : " site-header--page"}">
     <a class="wordmark" href="${ctx.home}">${esc(c.shop.name[lang])}</a>
@@ -337,7 +337,7 @@ function access(lang, c, ctx, t) {
     </section>`;
 }
 
-function footer(lang, c, ctx, t) {
+export function footer(lang, c, ctx, t) {
   const logo = ctx.sizes["assets/img/logo-sumi.png"];
   const wh = logo ? ` width="${logo.width}" height="${logo.height}"` : "";
   return `<footer class="site-footer on-light">
@@ -348,14 +348,13 @@ function footer(lang, c, ctx, t) {
   </footer>`;
 }
 
-function reserveUI(lang, c, ctx, t, { onTop = true } = {}) {
-  const target = onTop ? "#reserve" : `${ctx.home}#reserve`;
+export function reserveUI(lang, c, ctx, t, { onTop = true, target = onTop ? "#reserve" : `${ctx.home}#reserve`, tel = c.shop.tel } = {}) {
   return `<div class="reserve-bar">
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-list" data-open="${esc(t.menuOpen)}" data-close="${esc(t.menuClose)}">${esc(t.menuOpen)}</button>
-    <a href="${telHref(c.shop.tel)}">${esc(t.bar.tel)}</a>
+    <a href="${telHref(tel)}">${esc(t.bar.tel)}</a>
     <a href="${target}">${esc(t.bar.reserve)}</a>
   </div>
-  <a class="reserve-float" href="${target}">${esc(t.floatReserve)}<span class="num">${esc(c.shop.tel)}</span></a>`;
+  <a class="reserve-float" href="${target}">${esc(t.floatReserve)}<span class="num">${esc(tel)}</span></a>`;
 }
 
 // ---------------------------------------------------------------- ページ
@@ -375,34 +374,6 @@ export function homePage(lang, c, ctx) {
     ${kitchen(lang, c, ctx, t)}
     ${reserve(lang, c, ctx, t)}
     ${access(lang, c, ctx, t)}
-  </main>
-  ${footer(lang, c, ctx, t)}
-  <script src="${ctx.base}assets/js/site.js" defer></script>
-</body>
-</html>
-`;
-}
-
-// 季節ページ（/osechi/ など）の受け皿。state が "off" のときは生成されない。
-export function seasonalPage(lang, c, ctx) {
-  const t = copy(lang, c);
-  const sp = c.seasonalPage;
-  const title = `${sp.title[lang]}｜${c.shop.name[lang]}`;
-  const status = sp.state === "closed" ? `<p class="lead">${esc(sp.closedNotice[lang])}</p>` : `<p class="lead">${esc(sp.notice[lang])}</p>`;
-  return `${head(lang, c, ctx, t, { title, description: sp.notice[lang] })}
-<body class="page">
-  <a class="skip" href="#main">${esc(t.skip)}</a>
-  ${header(lang, c, ctx, t, { onTop: false })}
-  ${reserveUI(lang, c, ctx, t, { onTop: false })}
-  <main id="main">
-    <section class="sec sec--seasonal" aria-labelledby="seasonal-h">
-      <div class="sec__inner">
-        <h1 id="seasonal-h">${esc(sp.title[lang])}</h1>
-        ${status}
-        ${paras(sp.body[lang])}
-        ${sp.state === "open" ? reserveActions(lang, c, t) : ""}
-      </div>
-    </section>
   </main>
   ${footer(lang, c, ctx, t)}
   <script src="${ctx.base}assets/js/site.js" defer></script>

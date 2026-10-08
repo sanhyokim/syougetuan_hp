@@ -1,20 +1,33 @@
-// site.config.json から、日本語・English のページ、季節ページ、sitemap.xml を生成する。
+// site.config.json と osechi.json から、日本語・English のページ、おせちページ、sitemap.xml を生成する。
 // 使い方: node build.mjs     （外部ライブラリは不要。Node.js 18 以上）
 import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { homePage, seasonalPage } from "./src/templates.mjs";
-import { imageSize } from "./src/util.mjs";
+import { homePage } from "./src/templates.mjs";
+import { osechiPage, itemCount } from "./src/osechi.mjs";
+import { imageSize, parseDate } from "./src/util.mjs";
+import { joinWords } from "./src/copy.mjs";
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
-const c = JSON.parse(readFileSync(join(ROOT, "site.config.json"), "utf8"));
+function readJson(name) {
+  try {
+    return JSON.parse(readFileSync(join(ROOT, name), "utf8"));
+  } catch (e) {
+    console.error(`${name} の書き方に誤りがあります（" や , の消し忘れ・付けすぎがないか確認してください）:\n${e.message}`);
+    process.exit(1);
+  }
+}
+const c = readJson("site.config.json");
+c.osechi = joinWords(readJson("osechi.json")); // 「ひと｜つ」のような折り返しを防ぐ（本文と同じ処理）
+// 以前の書き方（seasonalPage.state）も読めるようにしておく
+if (c.seasonalPage.status === undefined && c.seasonalPage.state !== undefined) c.seasonalPage.status = c.seasonalPage.state;
 
 // ---------------------------------------------------------------- 設定の確認
 const problems = [];
 if (!/^https?:\/\/.+\/$/.test(c.siteUrl)) problems.push("siteUrl は https:// で始まり / で終わる URL にしてください");
 if (typeof c.course.price !== "number") problems.push("course.price は数字だけで書いてください（例: 21780）");
-if (!["off", "open", "closed"].includes(c.seasonalPage.state))
-  problems.push('seasonalPage.state は "off" / "open" / "closed" のいずれかにしてください');
+if (!["off", "open", "closed"].includes(c.seasonalPage.status))
+  problems.push('seasonalPage.status は "off" / "open" / "closed" のいずれかにしてください');
 if (!/^[a-z0-9-]+\/$/.test(c.seasonalPage.path)) problems.push('seasonalPage.path は "osechi/" のような形にしてください');
 for (const [k, s] of Object.entries(c.seasons)) {
   if (k === "heroAlt") continue;
@@ -22,6 +35,32 @@ for (const [k, s] of Object.entries(c.seasons)) {
 }
 for (const [k, p] of Object.entries(c.photos)) {
   if (p.src && !existsSync(join(ROOT, p.src))) problems.push(`photos.${k}.src の写真が見つかりません: ${p.src}`);
+}
+// おせち（osechi.json）
+const o = c.osechi;
+const warnings = [];
+if (c.seasonalPage.status !== "off") {
+  if (typeof o.price !== "number") problems.push("osechi.json の price は数字だけで書いてください（例: 30000）");
+  if (typeof o.limit !== "number") problems.push("osechi.json の limit は数字だけで書いてください（例: 20）");
+  const dates = { "order.start": o.order?.start, "order.end": o.order?.end, "pickup.date": o.pickup?.date, bestBefore: o.bestBefore, cancelFreeUntil: o.cancelFreeUntil };
+  for (const [k, v] of Object.entries(dates)) {
+    if (!parseDate(v)) problems.push(`osechi.json の ${k} は "2026-12-31" の形の正しい日付にしてください（いま: ${v}）`);
+  }
+  if (parseDate(o.order?.start) && parseDate(o.order?.end) && o.order.start > o.order.end)
+    problems.push("osechi.json の order.start（受付開始）が order.end（締切）より後になっています");
+  if (parseDate(o.order?.end) && parseDate(o.pickup?.date) && o.order.end > o.pickup.date)
+    problems.push("osechi.json の order.end（締切）が pickup.date（受け渡し）より後になっています");
+  for (const k of ["open", "close"]) {
+    if (!/^\d{2}:\d{2}$/.test(o.pickup?.[k] ?? "")) problems.push(`osechi.json の pickup.${k} は "11:00" の形にしてください`);
+    if (!/^\d{2}:\d{2}$/.test(o.order?.hours?.[k] ?? "")) problems.push(`osechi.json の order.hours.${k} は "15:00" の形にしてください`);
+  }
+  if (!o.photos?.hero?.src) problems.push("osechi.json の photos.hero.src を書いてください");
+  else if (!existsSync(join(ROOT, o.photos.hero.src))) warnings.push(`おせちのヒーロー写真がありません（${o.photos.hero.src}）。枠だけを表示します`);
+  for (const t of o.tiers ?? []) {
+    if (t.photo?.src && !existsSync(join(ROOT, t.photo.src))) warnings.push(`${t.name.ja}の写真がありません（${t.photo.src}）。「写真を準備中です」の枠を表示します`);
+  }
+  if (c.seasonalPage.status === "open" && !o.allergens?.checked)
+    warnings.push("アレルギーの表が「仮」のままです。店で確かめたら osechi.json の allergens.checked を true にしてください");
 }
 if (problems.length) {
   console.error("site.config.json を確認してください:\n- " + problems.join("\n- "));
@@ -38,6 +77,7 @@ const remember = (src) => src && (sizes[src] = imageSize(join(ROOT, src)));
 Object.values(c.photos).forEach((p) => remember(p.src));
 Object.values(c.seasons).forEach((s) => remember(s.hero?.src));
 remember("assets/img/logo-sumi.png");
+[o.photos.hero, o.photos.mood, ...o.tiers.map((t) => t.photo)].forEach((p) => remember(p?.src));
 
 const q = encodeURIComponent(c.shop.mapQuery);
 const shared = {
@@ -51,7 +91,7 @@ const shared = {
 
 const url = (path) => new URL(path, c.siteUrl).href;
 const sp = c.seasonalPage;
-const hasSeasonal = sp.state !== "off";
+const hasSeasonal = sp.status !== "off";
 
 // path: サイト直下からの場所（"" / "en/" / "osechi/" / "en/osechi/"）
 function context(lang, path, counterpart) {
@@ -88,8 +128,8 @@ write("en/", homePage("en", c, context("en", "en/", "")));
 
 const seasonalDirs = [sp.path, `en/${sp.path}`];
 if (hasSeasonal) {
-  write(sp.path, seasonalPage("ja", c, context("ja", sp.path, `en/${sp.path}`)));
-  write(`en/${sp.path}`, seasonalPage("en", c, context("en", `en/${sp.path}`, sp.path)));
+  write(sp.path, osechiPage("ja", c, context("ja", sp.path, `en/${sp.path}`)));
+  write(`en/${sp.path}`, osechiPage("en", c, context("en", `en/${sp.path}`, sp.path)));
 } else {
   // "off" のときは、以前に生成した季節ページも残さない
   for (const dir of seasonalDirs) {
@@ -125,4 +165,5 @@ ${entries}
 );
 writeFileSync(join(ROOT, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${url("sitemap.xml")}\n`);
 console.log("生成: sitemap.xml, robots.txt");
-console.log(`季節: ${season} ／ 季節ページ: ${sp.state}`);
+console.log(`季節: ${season} ／ おせちページ: ${sp.status}${hasSeasonal ? `（全${itemCount(o)}品）` : ""}`);
+for (const w of warnings) console.warn(`注意: ${w}`);

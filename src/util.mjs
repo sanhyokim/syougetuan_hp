@@ -73,3 +73,24 @@ export function imageSize(file) {
   }
   return null;
 }
+
+// "2026-12-31" → 日付の部品（年号は本文に書かず、曜日と構造化データのためだけに使う）
+const JA_WEEK = ["日", "月", "火", "水", "木", "金", "土"];
+const EN_WEEK = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const EN_MONTH = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+export function parseDate(iso) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso ?? ""));
+  if (!m) return null;
+  const [y, mo, d] = [Number(m[1]), Number(m[2]), Number(m[3])];
+  const date = new Date(Date.UTC(y, mo - 1, d));
+  if (date.getUTCMonth() !== mo - 1 || date.getUTCDate() !== d) return null;
+  return { y, m: mo, d, w: date.getUTCDay(), iso: m[0] };
+}
+// 12月31日（木）
+export const jaDate = (iso) => { const p = parseDate(iso); return `${p.m}月${p.d}日（${JA_WEEK[p.w]}）`; };
+// 十二月三十一日
+export const jaDateKanji = (iso) => { const p = parseDate(iso); return `${kanjiNumber(p.m)}月${kanjiNumber(p.d)}日`; };
+// Thursday 31 December
+export const enDate = (iso) => { const p = parseDate(iso); return `${EN_WEEK[p.w]} ${p.d} ${EN_MONTH[p.m - 1]}`; };
+// 31 December
+export const enDateShort = (iso) => { const p = parseDate(iso); return `${p.d} ${EN_MONTH[p.m - 1]}`; };

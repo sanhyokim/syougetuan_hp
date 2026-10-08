@@ -5,6 +5,8 @@ on:
   push:
     paths:
       - site.config.json
+      - osechi.json
+      - "images/**"
       - build.mjs
       - "src/**"
       - "assets/**"

@@ -1,0 +1,290 @@
+/* 料理屋 昇月庵 ─ おせちページ（/osechi/）
+   本体が「十八時に暖簾を掛ける夜の店」なら、ここは「一年に一度、昼に暖簾を掛ける日の店」。
+   地は暖簾の明るさ、文字は墨。正月だけの差し色は梔子（伊達巻・栗きんとんの黄）を一色、三箇所だけ。 */
+
+:root {
+  --kuchinashi: #C99A3E;      /* 梔子：罫線、墨の地の上の線 */
+  --kuchinashi-deep: #7A561A; /* 梔子・深：暖簾の地の上の文字（5.2:1） */
+  --o-rule: color-mix(in srgb, var(--kuchinashi) 60%, transparent);
+  --o-rule-quiet: color-mix(in srgb, var(--sumi) 16%, transparent);
+}
+
+html:has(.page--osechi) { background: var(--noren); }
+.page--osechi { background: var(--noren); color: var(--sumi); }
+.page--osechi :focus-visible { outline-color: var(--sumi); }
+.page--osechi .note { color: var(--enso-deep); }
+
+/* ------------------------------------------------------------ ヘッダー（昼の地） */
+.page--osechi .site-header--page { background: var(--noren); border-bottom: 1px solid var(--o-rule); }
+.page--osechi .nav-list a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--kuchinashi); }
+@media (max-width: 959.98px) {
+  .page--osechi .nav-list { color: var(--noren); }
+  .page--osechi .is-open .wordmark,
+  .page--osechi .is-open .lang { color: var(--noren); }
+}
+
+/* ------------------------------------------------------------ 写真と「写真はイメージです」 */
+.o-photo { margin: 0 calc(var(--gutter) * -1) 2rem; }
+.o-photo img { width: 100%; }
+.nw { white-space: nowrap; }
+/* 一の重・二の重の写真がまだないときの枠は、細く控えめに */
+.o-tier .photo--placeholder { aspect-ratio: 4 / 1; }
+.o-photo figcaption,
+.o-mood figcaption {
+  padding: .5rem var(--gutter) 0;
+  font-size: .875rem;
+  letter-spacing: .14em;
+  color: var(--enso-deep);
+}
+html[lang="en"] .o-photo figcaption, html[lang="en"] .o-mood figcaption { letter-spacing: .01em; font-style: italic; font-size: .9375rem; }
+.page--osechi .photo--placeholder {
+  background: color-mix(in srgb, var(--enso) 26%, var(--noren));
+  outline-color: var(--o-rule-quiet);
+  color: var(--enso-deep);
+}
+@media (min-width: 960px) {
+  /* 実寸より大きく引き伸ばさない（実物の写真に差し替えれば自然に広がる） */
+  .o-photo { margin: 0; max-inline-size: var(--w, none); }
+  .o-photo figcaption { padding-inline: 0; }
+}
+
+/* ------------------------------------------------------------ ヒーロー */
+.o-hero {
+  display: grid;
+  grid-template-columns: var(--gutter) minmax(0, 1fr) auto var(--gutter);
+  grid-template-rows: auto auto auto;
+  padding-bottom: clamp(3.5rem, 9vh, 6rem);
+}
+.o-hero__photo { grid-column: 1 / -1; grid-row: 1; margin: 0; }
+.o-name {
+  grid-column: 3;
+  grid-row: 2 / 4;
+  writing-mode: vertical-rl;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .9rem;
+  margin: 1.75rem 0 0 1rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1;
+}
+.o-name__series { font-size: .8125rem; letter-spacing: .4em; color: var(--enso-deep); }
+html[lang="en"] .o-name__series { writing-mode: horizontal-tb; font-family: var(--garamond); font-style: italic; font-size: 1rem; letter-spacing: .02em; display: none; }
+.o-name__main { padding-inline-start: 1.6em; margin-bottom: 4.5rem; font-size: 2.5rem; font-weight: 600; letter-spacing: .4em; }
+.o-name__main { position: relative; }
+.o-name__main::after {
+  /* 梔子の一本線（掛け紙の帯の位置）。字の下に、字の中心をそろえて引く */
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: calc(100% + .2em);
+  width: 1px;
+  height: 3.5rem;
+  background: var(--kuchinashi);
+}
+.o-hero__line {
+  grid-column: 2;
+  grid-row: 2;
+  margin: 2rem 0 0;
+  font-size: 1.0625rem;
+  letter-spacing: .16em;
+  word-break: auto-phrase;
+}
+html[lang="en"] .o-hero__line { font-style: italic; font-size: 1.25rem; letter-spacing: .01em; max-inline-size: 16em; }
+.o-hero__meta {
+  grid-column: 2;
+  grid-row: 3;
+  margin: 1.5rem 0 0;
+  font-size: .9375rem;
+  line-height: 2;
+  letter-spacing: .12em;
+  color: var(--enso-deep);
+}
+html[lang="en"] .o-hero__meta { letter-spacing: .01em; font-size: 1rem; line-height: 1.7; }
+.o-hero__meta .num { color: var(--sumi); }
+html[lang="ja"] .o-hero__meta { white-space: nowrap; }
+.o-hero__meta strong { font-weight: 600; color: var(--sumi); }
+.o-hero__en-name { font-style: italic; color: var(--sumi); font-size: 1.125rem; }
+
+@media (min-width: 640px) {
+  .o-hero { grid-template-columns: var(--gutter) minmax(0, 1fr) auto var(--gutter); padding-top: 3rem; }
+  .o-hero__photo { grid-column: 2; }
+  .o-hero .o-photo { margin: 0; }
+  .o-hero .o-photo figcaption { padding-inline: 0; }
+}
+@media (min-width: 960px) {
+  .o-hero {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: clamp(1rem, 2vw, 2.25rem);
+    padding: clamp(3.5rem, 9vh, 6rem) var(--gutter) clamp(4.5rem, 11vh, 8rem);
+    max-width: 92rem;
+    margin-inline: auto;
+    align-items: start;
+  }
+  .o-hero__photo { grid-column: 2 / 8; grid-row: 1 / 3; justify-self: end; }
+  .o-name { grid-column: 9; grid-row: 1 / 3; justify-self: center; margin: 0; }
+  .o-name__main { font-size: 3.5rem; }
+  html[lang="ja"] .o-hero__line {
+    grid-column: 10; grid-row: 1 / 3; justify-self: center;
+    writing-mode: vertical-rl; margin: 0; font-size: 1.1875rem; letter-spacing: .3em; line-height: 1.6;
+  }
+  html[lang="en"] .o-hero__line { grid-column: 10 / 13; grid-row: 1; margin: 0; }
+  html[lang="ja"] .o-hero__meta { grid-column: 11 / 13; grid-row: 1; margin: 0; }
+  html[lang="en"] .o-hero__meta { grid-column: 10 / 13; grid-row: 2; margin: 2rem 0 0; }
+}
+
+/* 開いたときに一度だけ：夜道の黒から、昼の暖簾の明るさへ地が移る（年が明ける） */
+@keyframes o-dawn { from { background-color: var(--yomichi); } to { background-color: var(--noren); } }
+@keyframes o-photo { from { opacity: 0; filter: brightness(.35); } to { opacity: 1; filter: none; } }
+@keyframes o-surface { from { opacity: 0; } to { opacity: 1; } }
+.is-intro .page--osechi,
+.is-intro .page--osechi .site-header--page { animation: o-dawn 2.6s cubic-bezier(.45, 0, .3, 1) both; }
+.is-intro .o-hero__photo { animation: o-photo 1.8s 1.1s ease-out both; }
+.is-intro .o-name { animation: o-surface 1.6s 2.6s ease-out both; }
+.is-intro .o-hero__line,
+.is-intro .o-hero__meta,
+.is-intro .page--osechi .site-header,
+.is-intro .page--osechi .reserve-bar,
+.is-intro .page--osechi .reserve-float { animation: o-surface 1.2s 3.4s ease-out both; }
+@media (prefers-reduced-motion: reduce) {
+  .is-intro .page--osechi, .is-intro .page--osechi .site-header--page, .is-intro .o-hero__photo, .is-intro .o-name,
+  .is-intro .o-hero__line, .is-intro .o-hero__meta, .is-intro .page--osechi .site-header,
+  .is-intro .page--osechi .reserve-bar, .is-intro .page--osechi .reserve-float { animation: none; }
+}
+
+/* ------------------------------------------------------------ 章の共通（昼の地は詰めて組む） */
+.o-sec { padding-block: clamp(3.5rem, 9vh, 7rem); border-top: 1px solid var(--o-rule); }
+.o-sec .sec__inner { max-width: 80rem; }
+@media (min-width: 960px) {
+  .o-sec { min-height: 0; display: block; }
+  .o-sec h2 { grid-column: 2 / 12; }
+}
+
+/* ごあいさつ：横書きの手紙 */
+.o-greeting__sign { text-align: end; letter-spacing: .3em; margin-top: 1.5rem; }
+html[lang="en"] .o-greeting__sign { letter-spacing: .01em; font-style: italic; }
+@media (min-width: 960px) {
+  .o-greeting__text { grid-column: 4 / 10; }
+  .o-greeting__text p { font-size: 1.0625rem; }
+}
+
+/* 背景の一枚：文字を載せない帯 */
+.o-mood { margin: 0; }
+.o-mood img { width: 100%; }
+
+/* お品書き */
+.o-menu__count { margin-bottom: 3rem; }
+.o-tier + .o-tier { margin-top: clamp(3.5rem, 9vh, 6rem); }
+.o-tier h3 { font-size: 1.25rem; margin-bottom: 1.5rem; }
+html[lang="en"] .o-tier h3 { font-family: var(--garamond); font-weight: 500; letter-spacing: .02em; font-size: 1.5rem; }
+.o-group {
+  margin: 1.75rem 0 .5rem;
+  font-size: .875rem;
+  letter-spacing: .3em;
+  color: var(--enso-deep);
+}
+html[lang="en"] .o-group { letter-spacing: .02em; font-style: italic; font-size: 1rem; }
+.o-items { list-style: none; margin: 0; padding: 0; }
+.o-items li { padding-block: .45rem; border-bottom: 1px solid var(--o-rule-quiet); }
+.o-item__name { letter-spacing: .1em; }
+html[lang="en"] .o-item__name { letter-spacing: .01em; }
+.o-item__parts { font-size: .9375rem; color: var(--enso-deep); }
+.o-item__local {
+  display: block;
+  margin-top: .15rem;
+  font-size: .9375rem;
+  line-height: 1.8;
+  color: var(--kuchinashi-deep);
+  word-break: auto-phrase;
+}
+@media (min-width: 960px) {
+  .o-menu .lead { grid-column: 2 / 12; }
+  .o-tier { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; align-items: start; }
+  .o-tier--odd .o-tier__photo { grid-column: 2 / 8; }
+  .o-tier--odd .o-tier__text { grid-column: 8 / 12; }
+  .o-tier--even .o-tier__photo { grid-column: 6 / 13; grid-row: 1; }
+  .o-tier--even .o-tier__text { grid-column: 2 / 6; grid-row: 1; }
+  .o-tier .photo--placeholder { width: 100%; }
+}
+
+/* お重のこと */
+@media (min-width: 960px) {
+  .o-details .o-info { grid-column: 2 / 10; }
+}
+.o-info dd { word-break: auto-phrase; }
+.o-info .num { white-space: nowrap; }
+html[lang="ja"] .page--osechi .info > div { grid-template-columns: 7.5em 1fr; }
+@media (min-width: 960px) { .page--osechi .info { margin-left: 0; } }
+
+/* アレルギー */
+.o-allergens__lead { margin-bottom: 2rem; }
+.o-provisional {
+  margin-top: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--kuchinashi);
+  color: var(--kuchinashi-deep);
+}
+.o-table { display: grid; gap: 2.5rem; }
+.o-table table { width: 100%; border-collapse: collapse; font-size: .9375rem; line-height: 1.7; }
+.o-table caption { caption-side: top; text-align: start; padding-bottom: .6rem; font-weight: 600; letter-spacing: .14em; border-bottom: 1px solid var(--o-rule); }
+html[lang="en"] .o-table caption { letter-spacing: .01em; }
+.o-table th, .o-table td { text-align: start; vertical-align: top; padding: .55rem 1rem .55rem 0; border-bottom: 1px solid var(--o-rule-quiet); }
+.o-table thead th { font-weight: 400; font-size: .8125rem; letter-spacing: .16em; color: var(--enso-deep); }
+html[lang="en"] .o-table thead th { letter-spacing: .01em; font-size: .9375rem; }
+.o-table tbody th { font-weight: 400; inline-size: 8.5em; white-space: nowrap; }
+.o-table td { color: var(--enso-deep); }
+.o-table .is-used th { font-weight: 600; }
+.o-table .is-used td { color: var(--sumi); }
+@media (min-width: 960px) {
+  .o-allergens__lead { grid-column: 2 / 9; }
+  .o-table { grid-column: 2 / 12; grid-template-columns: 1fr 1fr; column-gap: clamp(2rem, 4vw, 4rem); align-items: start; }
+}
+
+/* ご注意（本体の規定と同じ組み方を、昼の地の色で） */
+.page--osechi .policy p { border-top-color: var(--o-rule-quiet); }
+.page--osechi .policy__label { color: var(--enso-deep); }
+@media (min-width: 960px) {
+  .o-policy { grid-column: 2 / 12; columns: 3; column-gap: clamp(2rem, 4vw, 4rem); }
+  .o-policy p { break-inside: avoid; }
+}
+
+/* ご予約 */
+.o-abroad {
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+  border: 1px solid var(--o-rule);
+}
+.o-reserve__lead { margin-bottom: 1.5rem; }
+.page--osechi .o-tel {
+  max-inline-size: 30rem;
+  margin-bottom: 2.5rem;
+  min-height: 6rem;
+  background: var(--sumi);
+  color: var(--noren);
+  border-color: var(--sumi);
+}
+.page--osechi .o-tel:hover { background: #2b2622; }
+.page--osechi .o-tel:focus-visible { outline-color: var(--kuchinashi-deep); }
+.o-tel .act__num {
+  align-self: flex-start;
+  font-size: 2.125rem;
+  text-decoration: underline;
+  text-decoration-color: var(--kuchinashi);
+  text-decoration-thickness: 1px;
+  text-underline-offset: .3em;
+}
+.o-tel .act__sub { color: var(--enso); }
+.o-reserve__when { margin-bottom: 2.5rem; }
+.o-ask__lead { letter-spacing: .1em; }
+.o-ask ol { margin: 0; padding-left: 1.6em; }
+.o-ask li { padding-block: .3rem; }
+.o-closed { padding: 1.25rem 0; border-block: 1px solid var(--o-rule); }
+@media (min-width: 960px) {
+  .o-reserve__main, .o-closed { grid-column: 2 / 8; }
+  .o-ask { grid-column: 8 / 12; padding-top: .5rem; }
+}
+
+/* 画面下の帯・右下の札は、本体と同じ夜道の色のまま（昼の地の上で目印になる） */
+.page--osechi .reserve-bar,
+.page--osechi .reserve-float { color: var(--noren); }

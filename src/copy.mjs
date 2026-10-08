@@ -5,7 +5,7 @@ import { kanjiNumber, kanjiTime, englishNumber, englishTime, capitalize } from "
 // 文節の自動改行（word-break: auto-phrase）が「ひと｜つ」で折り返さないよう、
 // 分けたくない語の間に見えない WORD JOINER（U+2060）を入れる
 const NO_BREAK = ["ひとつ"];
-const joinWords = (v) =>
+export const joinWords = (v) =>
   typeof v === "string"
     ? NO_BREAK.reduce((s, w) => s.split(w).join([...w].join("\u2060")), v)
     : Array.isArray(v)

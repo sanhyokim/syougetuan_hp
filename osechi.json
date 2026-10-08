@@ -1,0 +1,292 @@
+{
+  "_使い方": "おせちページ（/osechi/）の文言・価格・日程・品書きは、すべてこのファイルにあります。公開・締切・非公開の切り替えは site.config.json の seasonalPage.status です。日付は \"2026-12-31\" の形で書くと、曜日と年は自動で入ります。写真は images/osechi/ に同じ名前で置くと差し替わります。詳しくは README.md の「おせちページの年間の更新手順」をご覧ください。",
+
+  "labels": {
+    "ja": {
+      "pageTitle": "おせち「初月」",
+      "heroLine": "{{pickupDate}}、{{pickupTime}}に暖簾を掛けます。",
+      "heroOrder": "ご予約　{{orderStart}}から",
+      "greeting": "ごあいさつ",
+      "menu": "お品書き",
+      "menuCount": "{{box}}、全{{count}}品。",
+      "details": "お重のこと",
+      "price": "価格",
+      "quantity": "数量",
+      "quantityText": "限定{{limit}}{{unit}}",
+      "contents": "内容",
+      "orderPeriod": "ご予約の受付",
+      "pickup": "受け渡し",
+      "payment": "お支払い",
+      "bestBefore": "消費期限",
+      "storage": "保存方法",
+      "howToEat": "お召し上がり方",
+      "allergens": "アレルギー",
+      "allergenItem": "品目",
+      "allergenDishes": "使っている料理",
+      "allergenNone": "使っていません",
+      "notes": "ご注意",
+      "reserve": "ご予約",
+      "telLabel": "お電話でご予約",
+      "orderHours": "受付時間",
+      "photoPending": "写真を準備中です",
+      "bar": { "reserve": "ご予約" }
+    },
+    "en": {
+      "pageTitle": "Hatsuzuki New Year osechi",
+      "heroLine": "On {{pickupDate}} at {{pickupTime}}, the noren goes up.",
+      "heroOrder": "Orders from {{orderStart}}",
+      "greeting": "A word from the kitchen",
+      "menu": "What is inside",
+      "menuCount": "{{box}}, {{count}} dishes in all.",
+      "details": "The box",
+      "price": "Price",
+      "quantity": "Quantity",
+      "quantityText": "{{limit}} {{unit}} only",
+      "contents": "Contents",
+      "orderPeriod": "Order period",
+      "pickup": "Collection",
+      "payment": "Payment",
+      "bestBefore": "Eat by",
+      "storage": "Storage",
+      "howToEat": "Serving",
+      "allergens": "Allergens",
+      "allergenItem": "Allergen",
+      "allergenDishes": "Dishes that contain it",
+      "allergenNone": "Not used",
+      "notes": "Please note",
+      "reserve": "How to order",
+      "telLabel": "Order by telephone",
+      "telAbroad": "From outside Japan",
+      "orderHours": "Phone hours",
+      "photoPending": "Photograph coming soon",
+      "bar": { "reserve": "Order" }
+    }
+  },
+
+  "name": { "ja": "初月", "kana": "はつづき", "en": "Hatsuzuki" },
+  "series": { "ja": "昇月庵のおせち", "en": "Shogetsuan New Year osechi" },
+  "nav": { "ja": "おせち", "en": "Osechi" },
+  "notice": {
+    "ja": "おせち「初月」のご予約を承っております。",
+    "en": "We are taking orders for our New Year osechi, Hatsuzuki."
+  },
+  "closedNotice": {
+    "ja": "今季のご予約は締め切りました。",
+    "en": "Orders for this season are now closed."
+  },
+  "description": {
+    "ja": "料理屋 昇月庵のおせち「初月」。二段重、瀬戸内と広島の素材を詰めて、大晦日に店頭でお渡しします。",
+    "en": "Hatsuzuki, the New Year osechi from Ryoriya Shogetsuan: two tiers of dishes built on the Seto Inland Sea and Hiroshima, handed over at the restaurant on New Year's Eve."
+  },
+
+  "box": { "ja": "二段重", "en": "Two tiers" },
+  "servings": { "ja": "2〜3人前", "en": "Serves two to three" },
+  "price": 30000,
+  "priceNote": { "ja": "税込", "en": "tax included" },
+  "limit": 20,
+  "limitUnit": { "ja": "組", "en": "sets" },
+
+  "order": {
+    "start": "2026-11-01",
+    "end": "2026-12-20",
+    "endNote": { "ja": "限定数に達し次第、締め切ります。", "en": "Orders close early once all sets are taken." },
+    "hours": { "open": "15:00", "close": "17:30" },
+    "closedDays": { "ja": "日曜・祝日を除く", "en": "except Sundays and national holidays" }
+  },
+
+  "pickup": {
+    "date": "2026-12-31",
+    "open": "11:00",
+    "close": "15:00",
+    "place": { "ja": "店頭にて（配送はいたしません）", "en": "In person at the restaurant (we do not deliver)" }
+  },
+
+  "payment": {
+    "ja": "お受け取りの際に店頭で。現金、VISA／JCB／AMEX／Diners",
+    "en": "At the restaurant when you collect. Cash, VISA, JCB, AMEX, Diners"
+  },
+  "bestBefore": "2027-01-01",
+  "storage": {
+    "ja": "要冷蔵（10℃以下）。お持ち帰りのあとは、すぐに冷蔵庫へお入れください。",
+    "en": "Keep refrigerated at 10°C or below. Please put it in the fridge as soon as you get home."
+  },
+  "howToEat": {
+    "ja": "召し上がる30分ほど前に冷蔵庫から出すと、味と香りが開きます。温め直しはいりません。",
+    "en": "Take it out of the fridge about 30 minutes before eating, so the flavours open up. No reheating is needed."
+  },
+  "cancelFreeUntil": "2026-12-20",
+
+  "greeting": {
+    "ja": [
+      "一年のはじめの朝に開けるお重を、昇月庵の板場で詰めました。",
+      "瀬戸内の魚と広島の素材を、日ごろのおまかせと同じ考えで、ひとつずつ仕立てています。",
+      "大晦日の昼、暖簾を掛けてお待ちしております。"
+    ],
+    "en": [
+      "We pack these boxes in our own kitchen, to be opened on the first morning of the year.",
+      "Fish from the Seto Inland Sea and ingredients from Hiroshima, each prepared with the same thinking as our omakase.",
+      "On the afternoon of New Year's Eve, the noren will be up and we will be waiting for you."
+    ]
+  },
+  "signature": { "ja": "料理長", "en": "The chef" },
+
+  "photoNote": { "ja": "写真はイメージです", "en": "Photographs are for illustration only" },
+  "photos": {
+    "hero": {
+      "src": "images/osechi/hero.jpg",
+      "alt": { "ja": "蓋を開けた二段の重に、色とりどりのおせちが詰められている", "en": "Two open tiers of a lacquer box, packed with New Year dishes" }
+    },
+    "mood": {
+      "src": "images/osechi/mood.jpg",
+      "alt": { "ja": "", "en": "" }
+    }
+  },
+
+  "tiers": [
+    {
+      "id": "ichinoju",
+      "name": { "ja": "一の重", "en": "First tier" },
+      "photo": {
+        "src": "images/osechi/ichinoju.jpg",
+        "alt": { "ja": "一の重。祝い肴と口取り", "en": "The first tier: celebratory starters and sweet-savoury bites" }
+      },
+      "groups": [
+        {
+          "name": { "ja": "祝い肴", "en": "Celebratory starters" },
+          "items": [
+            { "ja": "丹波黒豆の蜜煮", "en": "Tamba black beans in syrup" },
+            { "ja": "数の子の白醤油漬け", "en": "Herring roe in white soy" },
+            { "ja": "田作り", "en": "Candied small sardines" },
+            { "ja": "叩き牛蒡", "en": "Pounded burdock with sesame" }
+          ]
+        },
+        {
+          "name": { "ja": "口取り", "en": "Sweet-savoury bites" },
+          "items": [
+            { "ja": "伊達巻", "en": "Rolled sweet omelette" },
+            { "ja": "栗きんとん", "en": "Chestnuts in sweet potato" },
+            { "ja": "紅白なます 広島レモン仕立て", "en": "Red-and-white daikon with Hiroshima lemon",
+              "local": { "ja": "広島のレモンを皮ごと使い、酢を控えて香りで締めます。", "en": "Hiroshima lemons, peel and all, so the fragrance does the work of the vinegar." } },
+            { "ja": "車海老の艶煮", "en": "Glazed kuruma prawns" },
+            { "ja": "百合根の茶巾", "en": "Lily-bulb chakin" },
+            { "ja": "鴨ロース", "en": "Roast duck breast" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ninoju",
+      "name": { "ja": "二の重", "en": "Second tier" },
+      "photo": {
+        "src": "images/osechi/ninoju.jpg",
+        "alt": { "ja": "二の重。焼き物と煮物", "en": "The second tier: grilled and simmered dishes" }
+      },
+      "groups": [
+        {
+          "name": { "ja": "焼き物", "en": "Grilled" },
+          "items": [
+            { "ja": "寒鰆の幽庵焼き", "en": "Winter Spanish mackerel, yuan-yaki",
+              "local": { "ja": "冬の瀬戸内で脂ののった鰆を、柚子の香る地に漬けて焼きます。", "en": "Mackerel from the winter Seto Inland Sea, marinated with yuzu before grilling." } },
+            { "ja": "寒鰤の照り焼き", "en": "Winter yellowtail teriyaki" },
+            { "ja": "宮島穴子の八幡巻き", "en": "Miyajima conger eel rolled around burdock",
+              "local": { "ja": "宮島の近海で揚がる穴子で、牛蒡を巻いて焼き上げます。", "en": "Conger eel landed near Miyajima, wrapped around burdock and grilled." } },
+            { "ja": "比婆牛のロースト", "en": "Roast Hiba beef",
+              "local": { "ja": "広島県北の庄原で育つ比婆牛を、低い温度でゆっくり焼きます。", "en": "Beef raised in Shobara, northern Hiroshima, roasted slowly at a low heat." } }
+          ]
+        },
+        {
+          "name": { "ja": "煮物", "en": "Simmered" },
+          "items": [
+            { "ja": "広島県産牡蠣の旨煮", "en": "Hiroshima oysters, simmered",
+              "local": { "ja": "広島湾の牡蠣を、身が縮まないよう短く煮含めます。", "en": "Oysters from Hiroshima Bay, simmered briefly so they stay plump." } },
+            { "ja": "煮しめ", "en": "Nishime, simmered vegetables",
+              "parts": {
+                "ja": ["海老芋", "慈姑", "椎茸", "梅人参", "高野豆腐", "絹さや"],
+                "en": ["ebi-imo taro", "arrowhead", "shiitake", "plum-blossom carrot", "koya tofu", "snow peas"]
+              } }
+          ]
+        }
+      ]
+    }
+  ],
+
+  "allergens": {
+    "checked": false,
+    "uncheckedNote": {
+      "ja": "この表は仮のものです。品書きが決まりしだい、店で確かめて書き直します。",
+      "en": "This table is provisional. We will check and update it once the menu is final."
+    },
+    "lead": {
+      "ja": "特定原材料8品目と、それに準ずる20品目について、使っている料理を記しています。同じ調理場で扱うため、ごく微量が混じる可能性があります。",
+      "en": "The eight major allergens and twenty further allergens listed under Japanese labelling rules, with the dishes that contain them. All dishes are prepared in the same kitchen, so trace amounts cannot be ruled out."
+    },
+    "groups": [
+      {
+        "name": { "ja": "特定原材料（8品目）", "en": "Major allergens (8)" },
+        "rows": [
+          { "ja": "えび", "en": "Shrimp / prawn", "dishes": { "ja": "車海老の艶煮", "en": "Glazed kuruma prawns" } },
+          { "ja": "かに", "en": "Crab" },
+          { "ja": "くるみ", "en": "Walnut" },
+          { "ja": "小麦", "en": "Wheat", "dishes": { "ja": "醤油を使う料理（数の子、田作り、焼き物、煮物など）", "en": "Dishes seasoned with soy sauce (herring roe, sardines, grilled and simmered dishes)" } },
+          { "ja": "そば", "en": "Buckwheat" },
+          { "ja": "卵", "en": "Egg", "dishes": { "ja": "伊達巻", "en": "Rolled sweet omelette" } },
+          { "ja": "乳", "en": "Milk" },
+          { "ja": "落花生", "en": "Peanut" }
+        ]
+      },
+      {
+        "name": { "ja": "特定原材料に準ずるもの（20品目）", "en": "Further allergens (20)" },
+        "rows": [
+          { "ja": "アーモンド", "en": "Almond" },
+          { "ja": "あわび", "en": "Abalone" },
+          { "ja": "いか", "en": "Squid" },
+          { "ja": "いくら", "en": "Salmon roe" },
+          { "ja": "オレンジ", "en": "Orange" },
+          { "ja": "カシューナッツ", "en": "Cashew nut" },
+          { "ja": "キウイフルーツ", "en": "Kiwi fruit" },
+          { "ja": "牛肉", "en": "Beef", "dishes": { "ja": "比婆牛のロースト", "en": "Roast Hiba beef" } },
+          { "ja": "ごま", "en": "Sesame", "dishes": { "ja": "叩き牛蒡", "en": "Pounded burdock with sesame" } },
+          { "ja": "さけ", "en": "Salmon" },
+          { "ja": "さば", "en": "Mackerel" },
+          { "ja": "大豆", "en": "Soybean", "dishes": { "ja": "丹波黒豆の蜜煮、高野豆腐、醤油を使う料理", "en": "Black beans, koya tofu, dishes seasoned with soy sauce" } },
+          { "ja": "鶏肉", "en": "Chicken" },
+          { "ja": "バナナ", "en": "Banana" },
+          { "ja": "豚肉", "en": "Pork" },
+          { "ja": "マカダミアナッツ", "en": "Macadamia nut" },
+          { "ja": "もも", "en": "Peach" },
+          { "ja": "やまいも", "en": "Yam" },
+          { "ja": "りんご", "en": "Apple" },
+          { "ja": "ゼラチン", "en": "Gelatine" }
+        ]
+      }
+    ],
+    "none": { "ja": "—", "en": "—" }
+  },
+
+  "notes": {
+    "ja": [
+      { "label": "お取り消し", "text": "{{cancelFreeUntil}}までのお取り消しは無料です。それ以降のお取り消しは、代金の全額を申し受けます。" },
+      { "label": "受け取りの時刻を過ぎる場合", "text": "お約束の時刻に遅れそうなときは、お電話ください。{{pickupClose}}を過ぎてもご連絡がない場合、要冷蔵のお重を店でお預かりし続けることができないため、代金の全額を申し受けます。" },
+      { "label": "返品・交換", "text": "お渡しの朝に仕上げる要冷蔵の料理で、お持ち帰りのあとの保管の状態を店で確かめられないため、お受け取り後の返品・交換はお受けしておりません。" }
+    ],
+    "en": [
+      { "label": "Cancellation", "text": "Cancellation is free until {{cancelFreeUntil}}. After that date, the full price is charged." },
+      { "label": "If you are running late", "text": "If you may be late, please call us. If we have not heard from you by {{pickupClose}}, the full price is charged, as we cannot keep a chilled box at the restaurant beyond that time." },
+      { "label": "Returns", "text": "Each box is finished on the morning of collection and must be kept chilled. As we cannot know how it is stored once it leaves us, we cannot accept returns or exchanges." }
+    ]
+  },
+
+  "reserve": {
+    "lead": { "ja": "ご予約は、お電話だけで承ります。", "en": "Orders are taken by telephone only." },
+    "heroAbroad": { "ja": "", "en": "Collection in person in Hiroshima, Japan only" },
+    "abroad": {
+      "ja": "",
+      "en": "Collection in person at the restaurant in Hiroshima, Japan only. We cannot ship within Japan or abroad. Orders are taken in Japanese."
+    },
+    "askLead": { "ja": "お電話では、次の四つをお伺いします。", "en": "When you call, we will ask for:" },
+    "ask": {
+      "ja": ["お名前とご連絡先", "ご注文の数と、召し上がる人数", "受け取りの時刻（{{pickupOpen}}〜{{pickupClose}}のうち、ご都合のよい時刻）", "アレルギーや苦手な食材"],
+      "en": ["Your name and phone number", "How many boxes, and for how many people", "When you will collect (any time between {{pickupOpen}} and {{pickupClose}})", "Any allergies or foods you do not eat"]
+    }
+  }
+}
