@@ -1,5 +1,5 @@
 // HTML の雛形。値はすべて site.config.json と copy.mjs から受け取る。
-import { esc, fill, yen, clock12 } from "./util.mjs";
+import { esc, fill, yen, clock12, kanjiNumber, englishNumber } from "./util.mjs";
 import { copy } from "./copy.mjs";
 
 const FONTS =
@@ -182,6 +182,50 @@ function hero(lang, c, ctx, t) {
 // ---------------------------------------------------------------- 各章
 const paras = (arr, cls = "") => arr.map((p) => `<p${cls ? ` class="${cls}"` : ""}>${esc(p)}</p>`).join("\n        ");
 
+// 見出しつきの短い段落。本文が空の項目は出さない（情報が届いたら埋めるだけで表に出る）
+const labelled = (items) =>
+  items
+    .filter(([, text]) => text)
+    .map(([label, text]) => `<p><span class="policy__label">${esc(label)}</span>${esc(text)}</p>`)
+    .join("\n          ");
+
+// 見出しと値の一覧。値が空の行は出さない
+const facts = (cls, rows) => {
+  const html = rows
+    .filter(([, value]) => value)
+    .map(([label, value]) => `<div><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>`)
+    .join("\n          ");
+  return html ? `<dl class="${cls}">\n          ${html}\n        </dl>` : "";
+};
+
+function greeting(lang, c, ctx, t) {
+  const g = c.greeting[lang];
+  const tokens = { seats: lang === "ja" ? `${kanjiNumber(c.shop.seats)}席` : englishNumber(c.shop.seats) };
+  const chefName = c.chef.name[lang];
+  const okamiName = c.chef.okamiName?.[lang];
+  const sp = lang === "ja" ? "　" : " ";
+  const sign =
+    chefName || okamiName
+      ? [
+          `${c.chef.title[lang]}${chefName ? sp + chefName : ""}`,
+          `${t.kitchen.okami}${okamiName ? sp + okamiName : ""}`,
+        ]
+          .map((n) => `<span>${esc(n)}</span>`)
+          .join("")
+      : esc(t.greeting.sign);
+  return `<section class="sec sec--greeting" id="greeting" aria-labelledby="greeting-h">
+      <div class="sec__inner">
+        <h2 id="greeting-h">${esc(t.greeting.heading)}</h2>
+        <div class="greeting__text">
+          <p class="lead">${esc(fill(g.lead, tokens))}</p>
+          ${paras(g.body.map((b) => fill(b, tokens)))}
+          ${g.origin ? `<p>${esc(fill(g.origin, tokens))}</p>` : ""}
+          <p class="greeting__sign">${sign}</p>
+        </div>
+      </div>
+    </section>`;
+}
+
 function seats(lang, c, ctx, t) {
   return `<section class="sec sec--seats" id="seats" aria-labelledby="seats-h">
       <div class="sec__inner">
@@ -190,6 +234,7 @@ function seats(lang, c, ctx, t) {
         <div class="seats__text">
           <p class="lead">${esc(t.seats.lead)}</p>
           ${paras(t.seats.body)}
+          ${paras([c.shop.privateHire?.[lang], c.shop.celebration?.[lang]].filter(Boolean), "note seats__note")}
         </div>
       </div>
     </section>`;
@@ -200,6 +245,10 @@ function omakase(lang, c, ctx, t) {
     .filter(([, v]) => v?.rice?.[lang])
     .map(([k, v]) => `<p class="rice__season" data-season-only="${k}">${esc(v.rice[lang])}</p>`)
     .join("\n          ");
+  const more = labelled([
+    [t.omakase.drinks, c.course.drinks?.[lang]],
+    [t.omakase.sources, c.course.sources?.[lang]],
+  ]);
   const amount =
     lang === "ja"
       ? `<span class="num">${yen(c.course.price)}</span>${t.omakase.yen}`
@@ -215,6 +264,7 @@ function omakase(lang, c, ctx, t) {
           <p>${esc(t.omakase.rice)}</p>
           ${riceLines}
           </div>
+          ${more ? `<div class="omakase__more">\n          ${more}\n          </div>` : ""}
         </div>
         <div class="price">
           <p class="price__name">${esc(c.course.name[lang])}</p>
@@ -243,16 +293,18 @@ function kitchen(lang, c, ctx, t) {
     lang === "ja"
       ? `<p class="words words--vertical">${(Array.isArray(w) ? w : [w]).map((l) => `<span>${esc(l)}</span>`).join("")}</p>`
       : `<p class="words">${esc(Array.isArray(w) ? w.join(" ") : w)}</p>`;
-  const name = c.chef.name[lang] ? `<p class="chef-name">${esc(c.chef.title[lang])}　${esc(c.chef.name[lang])}</p>` : "";
+  const person = (role, name, text) => `<div class="person">
+            <p class="person__role">${esc(role)}${name ? `<span class="person__name">${esc(name)}</span>` : ""}</p>
+            <p>${esc(text)}</p>
+          </div>`;
   return `<section class="sec sec--kitchen" id="kitchen" aria-labelledby="kitchen-h">
       <div class="sec__inner">
         <h2 id="kitchen-h">${esc(t.kitchen.heading)}</h2>
         ${words}
         ${photo(lang, c, ctx, "kitchen", { cls: "kitchen__photo" })}
         <div class="kitchen__text">
-          ${name}
-          <p>${esc(c.chef.career[lang])}</p>
-          <p>${esc(c.chef.okami[lang])}</p>
+          ${person(c.chef.title[lang], c.chef.name[lang], c.chef.career[lang])}
+          ${person(t.kitchen.okami, c.chef.okamiName?.[lang], c.chef.okami[lang])}
         </div>
       </div>
     </section>`;
@@ -283,6 +335,13 @@ function reserve(lang, c, ctx, t) {
         <p class="lead reserve__lead">${esc(t.reserve.lead)}</p>
         <p class="reserve__price">${esc(c.course.name[lang])}${lang === "ja" ? "　" : " "}${lang === "ja" ? `<span class="num">${yen(c.course.price)}</span>円（${esc(c.course.priceNote.ja)}）` : `<span class="num">¥${yen(c.course.price)}</span> (${esc(c.course.priceNote.en)})`}</p>
         ${reserveActions(lang, c, t)}
+        ${facts("facts", [
+          [t.reserve.phoneHours, r.phoneHours?.[lang]],
+          [t.reserve.bookingWindow, r.bookingWindow?.[lang]],
+          [t.reserve.start, r.start?.[lang]],
+          [t.reserve.duration, r.duration?.[lang]],
+        ])}
+        ${r.overseas?.[lang] ? `<p class="reserve__overseas">${esc(r.overseas[lang])}</p>` : ""}
         <div class="policy">
           <p class="policy__lead">${esc(t.reserve.policyLead)}</p>
           ${policy}
@@ -310,6 +369,19 @@ function access(lang, c, ctx, t) {
   const directions = c.shop.directions[lang]?.length
     ? `<ol class="directions">${c.shop.directions[lang].map((d) => `<li>${esc(d)}</li>`).join("")}</ol>`
     : "";
+  const ent = c.photos.entrance;
+  const entSize = ent?.src ? ctx.sizes[ent.src] : null;
+  const entrance = ent?.src
+    ? `<figure class="entrance">
+          <img src="${ctx.base}${esc(ent.src)}" alt="${esc(ent.alt[lang])}"${entSize ? ` width="${entSize.width}" height="${entSize.height}"` : ""} loading="lazy" decoding="async">
+          <figcaption>${esc(c.shop.landmark[lang])}</figcaption>
+        </figure>`
+    : "";
+  // 入口の写真があるときは、目印の一文を写真の説明に回す
+  const landmark = entrance ? "" : `<br>${esc(c.shop.landmark[lang])}`;
+  const parking = c.shop.parking?.[lang]
+    ? `\n          <div><dt>${esc(A.parking)}</dt><dd>${esc(c.shop.parking[lang])}</dd></div>`
+    : "";
   const insta = c.shop.instagram
     ? `<br><a href="${esc(c.shop.instagram)}" target="_blank" rel="noopener">${esc(A.instagram)}</a>`
     : "";
@@ -320,13 +392,14 @@ function access(lang, c, ctx, t) {
           <iframe src="${esc(ctx.mapEmbed)}" title="${esc(A.map)}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <p><a href="${esc(ctx.mapLink)}" target="_blank" rel="noopener">${esc(A.mapLink)}<span class="sr-only">${esc(t.reserve.newTab)}</span></a></p>
         </div>
+        ${entrance}
         <dl class="info">
           <div><dt>${esc(A.address)}</dt><dd>${addressText(lang, c)}${
             lang === "en"
               ? `<br><span class="note">${esc(A.taxi)}:</span><br><span lang="ja">〒${esc(c.shop.postalCode)} ${esc(c.shop.address.ja.region + c.shop.address.ja.locality + c.shop.address.ja.street)}<br>${esc(c.shop.name.ja)}</span>`
               : ""
           }</dd></div>
-          <div><dt>${esc(A.nearest)}</dt><dd>${esc(c.shop.access[lang])}<br>${esc(c.shop.landmark[lang])}${directions}</dd></div>
+          <div><dt>${esc(A.nearest)}</dt><dd>${esc(c.shop.access[lang])}${landmark}${directions}</dd></div>${parking}
           <div><dt>${esc(A.hours)}</dt><dd>${esc(hoursText(lang, c))}</dd></div>
           <div><dt>${esc(A.closed)}</dt><dd>${esc(c.hours.closed[lang])}<br><span class="note">${esc(c.hours.note[lang])}</span>${insta}</dd></div>
           <div><dt>${esc(A.seating)}</dt><dd>${esc(A.seatingText)}</dd></div>
@@ -369,6 +442,7 @@ export function homePage(lang, c, ctx) {
   ${reserveUI(lang, c, ctx, t)}
   <main id="main">
     ${hero(lang, c, ctx, t)}
+    ${greeting(lang, c, ctx, t)}
     ${omakase(lang, c, ctx, t)}
     ${utsuwa(lang, c, ctx, t)}
     ${seats(lang, c, ctx, t)}
