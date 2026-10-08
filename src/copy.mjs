@@ -2,20 +2,8 @@
 // 年が変わると古くなる言葉（「本年」や固定の年号）は書かない。
 import { kanjiNumber, kanjiTime, englishNumber, englishTime, capitalize } from "./util.mjs";
 
-// 文節の自動改行（word-break: auto-phrase）が「ひと｜つ」で折り返さないよう、
-// 分けたくない語の間に見えない WORD JOINER（U+2060）を入れる
-const NO_BREAK = ["ひとつ"];
-const joinWords = (v) =>
-  typeof v === "string"
-    ? NO_BREAK.reduce((s, w) => s.split(w).join([...w].join("\u2060")), v)
-    : Array.isArray(v)
-      ? v.map(joinWords)
-      : v && typeof v === "object"
-        ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, joinWords(x)]))
-        : v;
-
 export function copy(lang, c) {
-  return lang === "ja" ? joinWords(copyText(lang, c)) : copyText(lang, c);
+  return copyText(lang, c);
 }
 
 function copyText(lang, c) {
@@ -31,11 +19,11 @@ function copyText(lang, c) {
       menuClose: "閉じる",
       langSwitch: { label: "English", lang: "en" },
       heroLine: `${kanjiTime(c.hours.open)}、暖簾を掛けます。`,
-      nav: { seats: seatsKanji, omakase: "おまかせ", utsuwa: "器と盛り", kitchen: "板場", reserve: "ご予約", access: "アクセス" },
+      nav: { seats: "カウンター", omakase: "おまかせ", utsuwa: "器と盛り", kitchen: "板場", reserve: "ご予約", access: "アクセス" },
       seats: {
-        heading: seatsKanji,
-        lead: `白木のカウンターに、${seatsKanji}だけ。`,
-        body: ["料理長が目の前で仕上げた一皿を、その場でお出しします。完全予約制です。"],
+        heading: "カウンター",
+        lead: `暖簾の内は、白木の${seatsKanji}だけ。`,
+        body: ["まな板を挟んで、料理長と向き合う席です。目の前で仕上げた一皿を、その場でお出しします。完全予約制です。"],
       },
       omakase: {
         heading: "おまかせ",
@@ -90,11 +78,11 @@ function copyText(lang, c) {
     menuClose: "Close",
     langSwitch: { label: "日本語", lang: "ja" },
     heroLine: `At ${englishTime(c.hours.open)}, the noren goes up.`,
-    nav: { seats: `${capitalize(seatsWord)} seats`, omakase: "Omakase", utsuwa: "Vessels", kitchen: "Kitchen", reserve: "Reservations", access: "Getting here" },
+    nav: { seats: "Counter", omakase: "Omakase", utsuwa: "Vessels", kitchen: "Kitchen", reserve: "Reservations", access: "Getting here" },
     seats: {
-      heading: `${capitalize(seatsWord)} seats`,
-      lead: `${capitalize(seatsWord)} seats at a plain wooden counter, and no more.`,
-      body: ["Each dish is finished by the chef in front of you and served across the counter. Reservations only."],
+      heading: "The counter",
+      lead: `Inside the noren, ${seatsWord} seats at a plain wooden counter, and no more.`,
+      body: ["You sit facing the chef across the cutting board. Each dish is finished in front of you and served on the spot. Reservations only."],
     },
     omakase: {
       heading: "Omakase",
