@@ -74,7 +74,7 @@ a:hover { text-decoration-color: currentColor; }
 .on-light :focus-visible { outline-color: var(--sumi); }
 
 p { margin: 0 0 1em; max-inline-size: var(--measure); }
-html[lang="ja"] p, html[lang="ja"] dd { word-break: auto-phrase; }
+html[lang="ja"] p, html[lang="ja"] dd { word-break: keep-all; overflow-wrap: anywhere; }
 p:last-child { margin-bottom: 0; }
 
 h1, h2, h3 {
@@ -83,7 +83,8 @@ h1, h2, h3 {
   line-height: 1.6;
   letter-spacing: .24em;
   font-feature-settings: "palt";
-  word-break: auto-phrase;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 html[lang="en"] h1, html[lang="en"] h2 {
   font-family: var(--garamond);
@@ -92,7 +93,7 @@ html[lang="en"] h1, html[lang="en"] h2 {
   font-feature-settings: normal;
 }
 
-.lead { font-size: 1.125rem; letter-spacing: .1em; word-break: auto-phrase; }
+.lead { font-size: 1.125rem; letter-spacing: .1em; }
 html[lang="en"] .lead { font-size: 1.3125rem; letter-spacing: 0; line-height: 1.5; }
 
 .note { font-size: .9375rem; color: var(--enso); }
@@ -272,7 +273,6 @@ html[lang="en"] .wordmark { font-size: 1.0625rem; letter-spacing: .04em; }
   margin: 0;
   font-size: 1.0625rem;
   letter-spacing: .22em;
-  word-break: auto-phrase;
 }
 html[lang="en"] .hero-line { letter-spacing: .01em; font-size: 1.25rem; font-style: italic; max-inline-size: 15em; }
 

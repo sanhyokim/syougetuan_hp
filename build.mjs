@@ -5,6 +5,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { homePage, seasonalPage } from "./src/templates.mjs";
 import { imageSize } from "./src/util.mjs";
+import { phraseBreaks } from "./src/phrase.mjs";
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
 const c = JSON.parse(readFileSync(join(ROOT, "site.config.json"), "utf8"));
@@ -78,7 +79,7 @@ function context(lang, path, counterpart) {
 function write(path, html) {
   const file = join(ROOT, path, "index.html");
   mkdirSync(dirname(file), { recursive: true });
-  writeFileSync(file, html);
+  writeFileSync(file, path.startsWith("en/") ? html : phraseBreaks(html));
   console.log("生成:", join(path, "index.html"));
 }
 
