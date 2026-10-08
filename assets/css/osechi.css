@@ -28,7 +28,7 @@ html[lang="ja"] .page--osechi li, html[lang="ja"] .page--osechi td, html[lang="j
 /* ------------------------------------------------------------ 写真と「写真はイメージです」 */
 .o-photo { margin: 0 calc(var(--gutter) * -1) 2rem; }
 .o-photo img { width: 100%; }
-.nw { white-space: nowrap; }
+.nw { display: inline-block; white-space: nowrap; }
 /* 一の重・二の重の写真がまだないときの枠は、細く控えめに */
 .o-tier .photo--placeholder { aspect-ratio: 4 / 1; }
 .o-photo figcaption,
@@ -123,16 +123,16 @@ html[lang="ja"] .o-hero__meta { white-space: nowrap; }
     margin-inline: auto;
     align-items: start;
   }
-  .o-hero__photo { grid-column: 2 / 8; grid-row: 1 / 3; justify-self: end; }
-  .o-name { grid-column: 9; grid-row: 1 / 3; justify-self: center; margin: 0; }
+  .o-hero__photo { grid-column: 1 / 7; grid-row: 1 / 3; justify-self: end; }
+  .o-name { grid-column: 8; grid-row: 1 / 3; justify-self: center; margin: 0; }
   .o-name__main { font-size: 3.5rem; }
   html[lang="ja"] .o-hero__line {
-    grid-column: 10; grid-row: 1 / 3; justify-self: center;
+    grid-column: 9; grid-row: 1 / 3; justify-self: center;
     writing-mode: vertical-rl; margin: 0; font-size: 1.1875rem; letter-spacing: .3em; line-height: 1.6;
   }
-  html[lang="en"] .o-hero__line { grid-column: 10 / 13; grid-row: 1; margin: 0; }
-  html[lang="ja"] .o-hero__meta { grid-column: 11 / 13; grid-row: 1; margin: 0; }
-  html[lang="en"] .o-hero__meta { grid-column: 10 / 13; grid-row: 2; margin: 2rem 0 0; }
+  html[lang="en"] .o-hero__line { grid-column: 9 / 13; grid-row: 1; margin: 0; }
+  html[lang="ja"] .o-hero__meta { grid-column: 10 / 13; grid-row: 1; margin: 0; }
+  html[lang="en"] .o-hero__meta { grid-column: 9 / 13; grid-row: 2; margin: 2rem 0 0; }
 }
 
 /* 開いたときに一度だけ：夜道の黒から、昼の暖簾の明るさへ地が移る（年が明ける） */
@@ -201,10 +201,10 @@ html[lang="en"] .o-item__name { letter-spacing: .01em; }
 @media (min-width: 960px) {
   .o-menu .lead { grid-column: 2 / 12; }
   .o-tier { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; align-items: start; }
-  .o-tier--odd .o-tier__photo { grid-column: 2 / 8; }
-  .o-tier--odd .o-tier__text { grid-column: 8 / 12; }
-  .o-tier--even .o-tier__photo { grid-column: 6 / 13; grid-row: 1; }
-  .o-tier--even .o-tier__text { grid-column: 2 / 6; grid-row: 1; }
+  .o-tier--odd .o-tier__photo { grid-column: 2 / 7; }
+  .o-tier--odd .o-tier__text { grid-column: 8 / 12; padding-top: 2rem; }
+  .o-tier--even .o-tier__photo { grid-column: 7 / 12; grid-row: 1; }
+  .o-tier--even .o-tier__text { grid-column: 2 / 6; grid-row: 1; padding-top: 2rem; }
   .o-tier .photo--placeholder { width: 100%; }
 }
 

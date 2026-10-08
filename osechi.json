@@ -81,9 +81,9 @@
 
   "box": { "ja": "二段重", "en": "Two tiers" },
   "servings": { "ja": "2〜3人前", "en": "Serves two to three" },
-  "price": 30000,
+  "price": 98000,
   "priceNote": { "ja": "税込", "en": "tax included" },
-  "limit": 20,
+  "limit": 15,
   "limitUnit": { "ja": "組", "en": "sets" },
 
   "order": {
@@ -134,11 +134,11 @@
   "photos": {
     "hero": {
       "src": "images/osechi/hero.jpg",
-      "alt": { "ja": "蓋を開けた二段の重に、色とりどりのおせちが詰められている", "en": "Two open tiers of a lacquer box, packed with New Year dishes" }
+      "alt": { "ja": "黒塗りの二段の重を並べ、蓋を開けた様子。色とりどりのおせちが詰められている", "en": "Two open black lacquer tiers side by side, packed with New Year dishes" }
     },
     "mood": {
       "src": "images/osechi/mood.jpg",
-      "alt": { "ja": "", "en": "" }
+      "alt": { "ja": "蓋を閉じた黒塗りの重箱。蓋の艶に、雲間の月が映っている", "en": "A closed black lacquer box, with the moon through the clouds reflected in its lid" }
     }
   },
 
@@ -148,7 +148,7 @@
       "name": { "ja": "一の重", "en": "First tier" },
       "photo": {
         "src": "images/osechi/ichinoju.jpg",
-        "alt": { "ja": "一の重。祝い肴と口取り", "en": "The first tier: celebratory starters and sweet-savoury bites" }
+        "alt": { "ja": "一の重。数の子、黒豆、伊達巻、紅白なます、栗きんとん、海老が仕切りごとに詰められている", "en": "The first tier: herring roe, black beans, rolled omelette, daikon salad with lemon, chestnuts and prawns, each in its own compartment" }
       },
       "groups": [
         {
@@ -179,7 +179,7 @@
       "name": { "ja": "二の重", "en": "Second tier" },
       "photo": {
         "src": "images/osechi/ninoju.jpg",
-        "alt": { "ja": "二の重。焼き物と煮物", "en": "The second tier: grilled and simmered dishes" }
+        "alt": { "ja": "二の重。焼いた鰆、穴子の八幡巻き、牡蠣の旨煮、煮しめ、ローストした牛肉", "en": "The second tier: grilled mackerel, conger eel rolls, simmered oysters, simmered vegetables and sliced roast beef" }
       },
       "groups": [
         {
