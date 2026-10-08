@@ -131,8 +131,8 @@
       "alt": { "ja": "桜の線描の椀に盛った蟹と山葵。脇に黒塗りの蓋", "en": "Crab with wasabi in a bowl drawn with cherry blossoms, its black lacquer lid set beside it" }
     },
     "kitchen": {
-      "src": "",
-      "alt": { "ja": "板場に立つ料理長とおかみ", "en": "The chef and the okami behind the counter" }
+      "src": "assets/img/kitchen.jpg",
+      "alt": { "ja": "白木のカウンターの向こう、板場に並んで立つ白衣の料理長と着物のおかみ", "en": "The chef in white and the okami in kimono standing side by side behind the pale wooden counter" }
     }
   },
 
