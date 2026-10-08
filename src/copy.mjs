@@ -2,7 +2,23 @@
 // 年が変わると古くなる言葉（「本年」や固定の年号）は書かない。
 import { kanjiNumber, kanjiTime, englishNumber, englishTime, capitalize } from "./util.mjs";
 
+// 文節の自動改行（word-break: auto-phrase）が「ひと｜つ」で折り返さないよう、
+// 分けたくない語の間に見えない WORD JOINER（U+2060）を入れる
+const NO_BREAK = ["ひとつ"];
+const joinWords = (v) =>
+  typeof v === "string"
+    ? NO_BREAK.reduce((s, w) => s.split(w).join([...w].join("\u2060")), v)
+    : Array.isArray(v)
+      ? v.map(joinWords)
+      : v && typeof v === "object"
+        ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, joinWords(x)]))
+        : v;
+
 export function copy(lang, c) {
+  return lang === "ja" ? joinWords(copyText(lang, c)) : copyText(lang, c);
+}
+
+function copyText(lang, c) {
   const seats = c.shop.seats;
   if (lang === "ja") {
     const seatsKanji = `${kanjiNumber(seats)}席`;
