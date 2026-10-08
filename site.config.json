@@ -1,0 +1,184 @@
+{
+  "_使い方": "店舗情報・料金・営業時間・予約の規定はすべてこのファイルにあります。書き換えて保存（GitHub にコミット）すると、日本語と English のページ、検索エンジン向けの情報が自動で作り直されます。詳しくは README.md をご覧ください。",
+
+  "siteUrl": "https://sanhyokim.github.io/syougetuan_hp/",
+
+  "shop": {
+    "name": { "ja": "料理屋 昇月庵", "kana": "りょうりや しょうげつあん", "en": "Ryoriya Shogetsuan" },
+    "kind": { "ja": "料理屋", "en": "Ryoriya" },
+    "shortName": { "ja": "昇月庵", "en": "Shogetsuan" },
+    "postalCode": "730-0041",
+    "address": {
+      "ja": { "region": "広島県", "locality": "広島市中区", "street": "小町3-6" },
+      "en": { "region": "Hiroshima", "locality": "Naka-ku, Hiroshima", "street": "3-6 Komachi" }
+    },
+    "access": {
+      "ja": "広島電鉄 宇品線「中電前」電停から徒歩約2分",
+      "en": "About two minutes on foot from Chuden-mae tram stop (Hiroden Ujina Line)"
+    },
+    "directions": {
+      "ja": [],
+      "en": []
+    },
+    "landmark": {
+      "ja": "白い暖簾が目印です。",
+      "en": "Look for the white noren curtain over the door."
+    },
+    "tel": "082-259-3098",
+    "telIntl": "+81-82-259-3098",
+    "seats": 7,
+    "instagram": "",
+    "mapQuery": "広島県広島市中区小町3-6",
+    "award": {
+      "ja": "ミシュランガイド広島・愛媛 2018 特別版 二つ星",
+      "en": "Two MICHELIN Stars, The MICHELIN Guide Hiroshima & Ehime 2018 Special Edition"
+    }
+  },
+
+  "hours": {
+    "open": "18:00",
+    "close": "23:00",
+    "lastOrder": "21:00",
+    "openDays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    "closed": { "ja": "日曜・祝日", "en": "Sundays and national holidays" },
+    "note": {
+      "ja": "臨時に営業・休業する日があります。",
+      "en": "We occasionally open or close on other days."
+    }
+  },
+
+  "course": {
+    "name": { "ja": "おまかせコース", "en": "Omakase course" },
+    "price": 21780,
+    "priceNote": {
+      "ja": "税込・サービス料なし",
+      "en": "tax included, no service charge"
+    },
+    "dishes": { "ja": "十品ほど", "en": "around ten dishes" },
+    "change": {
+      "ja": "仕入れの状況により、内容と料金が変わることがあります。",
+      "en": "The menu and price may change with what the market offers."
+    }
+  },
+
+  "payment": {
+    "ja": "現金、VISA／JCB／AMEX／Diners",
+    "en": "Cash, VISA, JCB, AMEX, Diners",
+    "note": {
+      "ja": "QRコード決済はご利用いただけません。",
+      "en": "QR code payments are not accepted."
+    }
+  },
+
+  "reservation": {
+    "url": {
+      "ja": "https://omakaseje.com/ja/restaurants/oc943362",
+      "en": "https://omakaseje.com/ja/restaurants/oc943362"
+    },
+    "siteName": { "ja": "予約サイト", "en": "booking site" },
+    "arriveMinutesBefore": 5,
+    "cancellation": { "dayBefore": 50, "sameDay": 100 },
+    "policy": {
+      "ja": [
+        { "label": "ご来店の時刻", "text": "ご予約の時刻の{{arrive}}分前までにお越しください。ご連絡のないまま予約の時刻を過ぎた場合は、ご予約を自動的に取り消させていただきます。" },
+        { "label": "お取り消し", "text": "ご予約を取り消される場合、前日はコース料金の{{cancelDayBefore}}%、当日は{{cancelSameDay}}%をキャンセル料として申し受けます。" },
+        { "label": "お召し物", "text": "スマートカジュアルでお越しください。Tシャツ、短パン、サンダルでのご来店はご遠慮いただいております。" },
+        { "label": "苦手な食材", "text": "苦手な食材やアレルギーがございましたら、ご予約の際にお知らせください。除く範囲が広い場合は、お受けできないことがございます。" },
+        { "label": "お子様", "text": "お子様は、貸切でご利用の場合に限り、大人と同じコースを召し上がれる方をお迎えしております。" },
+        { "label": "香り", "text": "お料理の香りを損なわないよう、香水や柔軟剤などの強い香りはお控えください。" },
+        { "label": "撮影", "text": "店内での撮影はご自由にどうぞ。ただ、ほかのお客様やスタッフの顔が写らないよう、お気遣いをお願いいたします。" }
+      ],
+      "en": [
+        { "label": "Arrival", "text": "Please arrive {{arrive}} minutes before your reservation time. If you are late without letting us know, your reservation will be cancelled automatically." },
+        { "label": "Cancellation", "text": "Cancellations made the day before are charged at {{cancelDayBefore}}% of the course price, and on the day at {{cancelSameDay}}%." },
+        { "label": "Dress code", "text": "Smart casual. Please do not come in T-shirts, shorts or sandals." },
+        { "label": "Allergies", "text": "Please tell us about any allergies or ingredients you do not eat when you book. If the list is long, we may not be able to accommodate you." },
+        { "label": "Children", "text": "Children are welcome only when the restaurant is booked for a private party, and only if they can enjoy the same course as adults." },
+        { "label": "Fragrance", "text": "Please avoid strong perfume and fabric-softener scents, so they do not mask the aromas of the food." },
+        { "label": "Photography", "text": "You are welcome to take photographs. Please make sure the faces of other guests and our staff are not in the frame." }
+      ]
+    }
+  },
+
+  "chef": {
+    "title": { "ja": "料理長", "en": "Chef" },
+    "name": { "ja": "", "en": "" },
+    "words": {
+      "ja": ["高価な食材に頼らず、", "素材の持ち味を重ねて", "一皿を組み立てる。"],
+      "en": "Not leaning on costly ingredients, but layering one ingredient's character onto another's to build each dish."
+    },
+    "career": {
+      "ja": "東京の星付きの和食店で修業を重ね、広島に昇月庵を構えました。",
+      "en": "The chef trained at a Michelin-starred Japanese restaurant in Tokyo before opening Shogetsuan in Hiroshima."
+    },
+    "okami": {
+      "ja": "客席では、おかみがお世話をいたします。",
+      "en": "At the counter, the okami looks after our guests."
+    }
+  },
+
+  "photos": {
+    "seats": {
+      "src": "assets/img/counter.jpg",
+      "alt": { "ja": "白木のカウンターに七つの席。朱の折敷にナプキンが置かれている", "en": "Seven places set along a pale wooden counter, each with a vermilion tray and napkin" }
+    },
+    "omakase": {
+      "src": "assets/img/dish-uni.jpg",
+      "alt": { "ja": "織部の角皿に盛られた、雲丹をのせた揚げ物と柑橘", "en": "Fried rounds topped with sea urchin and shiso flowers on a rectangular Oribe dish, with a wedge of citrus" }
+    },
+    "utsuwa": {
+      "src": "assets/img/utsuwa-kani.jpg",
+      "alt": { "ja": "桜の線描の椀に盛った蟹と山葵。脇に黒塗りの蓋", "en": "Crab with wasabi in a bowl drawn with cherry blossoms, its black lacquer lid set beside it" }
+    },
+    "kitchen": {
+      "src": "",
+      "alt": { "ja": "板場に立つ料理長とおかみ", "en": "The chef and the okami behind the counter" }
+    }
+  },
+
+  "seasons": {
+    "spring": {
+      "months": [3, 4, 5],
+      "hero": { "src": "assets/img/noren.jpg", "positionMobile": "59% 50%" },
+      "rice": { "ja": "", "en": "" }
+    },
+    "summer": {
+      "months": [6, 7, 8],
+      "hero": { "src": "assets/img/noren.jpg", "positionMobile": "59% 50%" },
+      "rice": { "ja": "", "en": "" }
+    },
+    "autumn": {
+      "months": [9, 10, 11],
+      "hero": { "src": "assets/img/noren.jpg", "positionMobile": "59% 50%" },
+      "rice": { "ja": "", "en": "" }
+    },
+    "winter": {
+      "months": [12, 1, 2],
+      "hero": { "src": "assets/img/noren.jpg", "positionMobile": "59% 50%" },
+      "rice": { "ja": "", "en": "" }
+    },
+    "heroAlt": {
+      "ja": "夜、灯の入った暖簾と格子戸。暖簾に「料理屋 昇月庵」の筆文字",
+      "en": "The entrance at night: a lit lamp, a white noren curtain brushed with the restaurant's name, and a latticed wooden door"
+    }
+  },
+
+  "seasonalPage": {
+    "state": "off",
+    "path": "osechi/",
+    "nav": { "ja": "おせち", "en": "Osechi" },
+    "title": { "ja": "おせちのご予約", "en": "New Year osechi" },
+    "notice": {
+      "ja": "おせちのご予約を承っております。",
+      "en": "We are taking orders for New Year osechi."
+    },
+    "closedNotice": {
+      "ja": "おせちのご予約は締め切りました。",
+      "en": "Osechi orders are now closed."
+    },
+    "body": {
+      "ja": ["内容とお申し込みの方法は、追ってこのページでご案内します。"],
+      "en": ["Details and how to order will be posted on this page."]
+    }
+  }
+}

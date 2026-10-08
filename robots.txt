@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sanhyokim.github.io/syougetuan_hp/sitemap.xml
