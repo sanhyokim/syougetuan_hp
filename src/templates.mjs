@@ -369,9 +369,9 @@ export function homePage(lang, c, ctx) {
   <main id="main">
     ${hero(lang, c, ctx, t)}
     ${omakase(lang, c, ctx, t)}
-    ${kitchen(lang, c, ctx, t)}
     ${utsuwa(lang, c, ctx, t)}
     ${seats(lang, c, ctx, t)}
+    ${kitchen(lang, c, ctx, t)}
     ${reserve(lang, c, ctx, t)}
     ${access(lang, c, ctx, t)}
   </main>

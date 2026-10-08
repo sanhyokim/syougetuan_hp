@@ -19,7 +19,7 @@ function copyText(lang, c) {
       menuClose: "閉じる",
       langSwitch: { label: "English", lang: "en" },
       heroLine: `${kanjiTime(c.hours.open)}、暖簾を掛けます。`,
-      nav: { omakase: "おまかせ", kitchen: "板場", utsuwa: "器と盛り", seats: "カウンター", reserve: "ご予約", access: "アクセス" },
+      nav: { omakase: "おまかせ", utsuwa: "器と盛り", seats: "カウンター", kitchen: "板場", reserve: "ご予約", access: "アクセス" },
       seats: {
         heading: "カウンター",
         lead: `暖簾の内は、白木の${seatsKanji}だけ。`,
@@ -78,7 +78,7 @@ function copyText(lang, c) {
     menuClose: "Close",
     langSwitch: { label: "日本語", lang: "ja" },
     heroLine: `At ${englishTime(c.hours.open)}, the noren goes up.`,
-    nav: { omakase: "Omakase", kitchen: "Kitchen", utsuwa: "Vessels", seats: "Counter", reserve: "Reservations", access: "Getting here" },
+    nav: { omakase: "Omakase", utsuwa: "Vessels", seats: "Counter", kitchen: "Kitchen", reserve: "Reservations", access: "Getting here" },
     seats: {
       heading: "The counter",
       lead: `Inside the noren, ${seatsWord} seats at a plain wooden counter, and no more.`,
