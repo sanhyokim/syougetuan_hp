@@ -133,20 +133,9 @@
   },
 
   "chef": {
-    "title": { "ja": "料理長", "en": "Chef" },
-    "name": { "ja": "", "en": "" },
     "words": {
       "ja": ["高価な食材に頼らず、", "素材の持ち味を重ねて", "一皿を組み立てる。"],
       "en": "Not leaning on costly ingredients, but layering one ingredient's character onto another's to build each dish."
-    },
-    "career": {
-      "ja": "東京の星付きの和食店で修業を重ね、広島に昇月庵を構えました。",
-      "en": "The chef trained at a Michelin-starred Japanese restaurant in Tokyo before opening Shogetsuan in Hiroshima."
-    },
-    "okamiName": { "ja": "", "en": "" },
-    "okami": {
-      "ja": "客席でお客様をお迎えし、お世話をいたします。",
-      "en": "She welcomes you and looks after you at the counter."
     }
   },
 
