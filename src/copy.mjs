@@ -20,7 +20,7 @@ function copyText(lang, c) {
       langSwitch: { label: "English", lang: "en" },
       heroLine: `${kanjiTime(c.hours.open)}、暖簾を掛けます。`,
       nav: { omakase: "おまかせ", utsuwa: "器と盛り", seats: "カウンター", kitchen: "板場", reserve: "ご予約", access: "アクセス" },
-      greeting: { heading: "ごあいさつ", sign: "料理長・おかみ" },
+      greeting: { heading: "ごあいさつ" },
       seats: {
         heading: "カウンター",
         lead: `暖簾の内は、白木の${seatsKanji}だけ。`,
@@ -42,7 +42,7 @@ function copyText(lang, c) {
         heading: "器と盛り",
         body: ["料理に合わせて器を選び、器に合わせて盛りを決めます。", "蓋を取ったとき、器の絵と料理が、ひとつの景色になるように。"],
       },
-      kitchen: { heading: "板場", okami: "おかみ", placeholder: "写真を準備中です" },
+      kitchen: { heading: "板場", placeholder: "写真を準備中です" },
       reserve: {
         heading: "ご予約",
         lead: "ご予約は、お電話または予約サイトで承ります。",
@@ -87,7 +87,7 @@ function copyText(lang, c) {
     langSwitch: { label: "日本語", lang: "ja" },
     heroLine: `At ${englishTime(c.hours.open)}, the noren goes up.`,
     nav: { omakase: "Omakase", utsuwa: "Vessels", seats: "Counter", kitchen: "Kitchen", reserve: "Reservations", access: "Getting here" },
-    greeting: { heading: "Welcome", sign: "The chef and the okami" },
+    greeting: { heading: "Welcome" },
     seats: {
       heading: "The counter",
       lead: `Inside the noren, ${seatsWord} seats at a plain wooden counter, and no more.`,
@@ -109,7 +109,7 @@ function copyText(lang, c) {
       heading: "Vessel and plating",
       body: ["Vessels are chosen for the food, and the plating for the vessel.", "When the lid comes off, the painting on the bowl and the food in it should read as one scene."],
     },
-    kitchen: { heading: "The kitchen", okami: "Okami", placeholder: "Photograph coming soon" },
+    kitchen: { heading: "The kitchen", placeholder: "Photograph coming soon" },
     reserve: {
       heading: "Reservations",
       lead: "Reservations are taken by phone or through our booking site.",

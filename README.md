@@ -126,10 +126,7 @@ off／open／closed の三つの状態で作り直し、リンク切れ、告知
 |---|---|---|
 | ごあいさつの文（いまは下書き） | `greeting.ja` / `greeting.en` の `lead`・`body` | トップのすぐ後 |
 | 店名の由来・開業の年 | `greeting.<言語>.origin` | ごあいさつの本文の後 |
-| 料理長のお名前 | `chef.name` | ごあいさつの署名と板場 |
-| おかみのお名前 | `chef.okamiName` | ごあいさつの署名と板場 |
 | 料理長のお言葉（いまは仮の文） | `chef.words` | 板場 |
-| 料理長の経歴・おかみの一言 | `chef.career` / `chef.okami` | 板場の写真の下 |
 | お飲み物 | `course.drinks` | おまかせ |
 | 素材の産地・仕入れ先 | `course.sources` | おまかせ |
 | 季節の炊き込みご飯の一行 | `seasons.<季節>.rice` | おまかせ |

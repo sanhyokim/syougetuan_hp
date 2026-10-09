@@ -202,18 +202,6 @@ const facts = (cls, rows) => {
 function greeting(lang, c, ctx, t) {
   const g = c.greeting[lang];
   const tokens = { seats: lang === "ja" ? `${kanjiNumber(c.shop.seats)}席` : englishNumber(c.shop.seats) };
-  const chefName = c.chef.name[lang];
-  const okamiName = c.chef.okamiName?.[lang];
-  const sp = lang === "ja" ? "　" : " ";
-  const sign =
-    chefName || okamiName
-      ? [
-          `${c.chef.title[lang]}${chefName ? sp + chefName : ""}`,
-          `${t.kitchen.okami}${okamiName ? sp + okamiName : ""}`,
-        ]
-          .map((n) => `<span>${esc(n)}</span>`)
-          .join("")
-      : esc(t.greeting.sign);
   return `<section class="sec sec--greeting" id="greeting" aria-labelledby="greeting-h">
       <div class="sec__inner">
         <h2 id="greeting-h">${esc(t.greeting.heading)}</h2>
@@ -221,7 +209,6 @@ function greeting(lang, c, ctx, t) {
           <p class="lead">${esc(fill(g.lead, tokens))}</p>
           ${paras(g.body.map((b) => fill(b, tokens)))}
           ${g.origin ? `<p>${esc(fill(g.origin, tokens))}</p>` : ""}
-          <p class="greeting__sign">${sign}</p>
         </div>
       </div>
     </section>`;
@@ -294,19 +281,11 @@ function kitchen(lang, c, ctx, t) {
     lang === "ja"
       ? `<p class="words words--vertical">${(Array.isArray(w) ? w : [w]).map((l) => `<span>${esc(l)}</span>`).join("")}</p>`
       : `<p class="words">${esc(Array.isArray(w) ? w.join(" ") : w)}</p>`;
-  const person = (role, name, text) => `<div class="person">
-            <p class="person__role">${esc(role)}${name ? `<span class="person__name">${esc(name)}</span>` : ""}</p>
-            <p>${esc(text)}</p>
-          </div>`;
   return `<section class="sec sec--kitchen" id="kitchen" aria-labelledby="kitchen-h">
       <div class="sec__inner">
         <h2 id="kitchen-h">${esc(t.kitchen.heading)}</h2>
         ${words}
         ${photo(lang, c, ctx, "kitchen", { cls: "kitchen__photo" })}
-        <div class="kitchen__text">
-          ${person(c.chef.title[lang], c.chef.name[lang], c.chef.career[lang])}
-          ${person(t.kitchen.okami, c.chef.okamiName?.[lang], c.chef.okami[lang])}
-        </div>
       </div>
     </section>`;
 }
