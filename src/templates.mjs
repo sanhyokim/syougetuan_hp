@@ -1,6 +1,7 @@
 // HTML の雛形。値はすべて site.config.json と copy.mjs から受け取る。
 import { esc, fill, yen, clock12, kanjiNumber, englishNumber } from "./util.mjs";
 import { copy } from "./copy.mjs";
+import { osechiBanner } from "./osechi.mjs";
 
 const FONTS =
   "https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Zen+Old+Mincho:wght@400;600&display=swap";
@@ -441,7 +442,7 @@ export function homePage(lang, c, ctx) {
   ${reserveUI(lang, c, ctx, t)}
   <main id="main">
     ${hero(lang, c, ctx, t)}
-    ${greeting(lang, c, ctx, t)}
+    ${greeting(lang, c, ctx, t)}${osechiBanner(lang, c, ctx)}
     ${omakase(lang, c, ctx, t)}
     ${utsuwa(lang, c, ctx, t)}
     ${seats(lang, c, ctx, t)}

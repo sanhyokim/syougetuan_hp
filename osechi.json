@@ -29,7 +29,8 @@
       "telLabel": "お電話でご予約",
       "orderHours": "受付時間",
       "photoPending": "写真を準備中です",
-      "bar": { "reserve": "ご予約" }
+      "bar": { "reserve": "ご予約" },
+      "banner": { "order": "ご予約　{{orderStart}}〜{{orderEnd}}", "link": "おせちのご案内" }
     },
     "en": {
       "pageTitle": "Hatsuzuki New Year osechi",
@@ -59,7 +60,8 @@
       "telAbroad": "From outside Japan",
       "orderHours": "Phone hours",
       "photoPending": "Photograph coming soon",
-      "bar": { "reserve": "Order" }
+      "bar": { "reserve": "Order" },
+      "banner": { "order": "Orders {{orderStart}} – {{orderEnd}}", "link": "About the osechi" }
     }
   },
 

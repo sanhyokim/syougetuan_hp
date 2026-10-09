@@ -668,3 +668,42 @@ html[data-season="winter"] [data-season-only="winter"] { display: block; }
 .page main { min-height: 70svh; }
 .sec--seasonal h1 { font-size: 1.5rem; margin-bottom: 2rem; grid-column: 2 / 12; }
 .sec--seasonal p, .sec--seasonal .actions { grid-column: 2 / 9; }
+
+/* ------------------------------------------------------------ おせちの案内（seasonalPage.status が "open" のときだけ出る） */
+.o-banner {
+  --kuchinashi: #C99A3E;
+  background: var(--tobari);
+  padding: clamp(3rem, 8vh, 6rem) var(--gutter);
+}
+.o-banner__inner {
+  max-width: 64rem;
+  margin-inline: auto;
+  border-top: 1px solid var(--kuchinashi);
+  border-bottom: 1px solid var(--kuchinashi);
+  padding-block: 2rem;
+  display: grid;
+  gap: 1.5rem;
+}
+.o-banner__photo { display: block; }
+.o-banner__photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.o-banner .o-banner__kicker { color: var(--kuchinashi); font-size: .875rem; letter-spacing: .2em; margin: 0 0 .5rem; }
+.o-banner h2.o-banner__name { font-size: 1.75rem; letter-spacing: .15em; margin: 0 0 1rem 0; font-weight: 400; }
+html[lang="ja"] .o-banner h2.o-banner__name { margin-left: -.5em; }
+html[lang="en"] .o-banner__name { letter-spacing: .04em; }
+.o-banner__meta { margin: 0 0 1rem; line-height: 1.9; }
+.o-banner .nw { display: inline-block; white-space: nowrap; }
+.o-banner__link {
+  display: inline-block;
+  padding: .8em 1.6em;
+  border: 1px solid var(--kuchinashi);
+  color: var(--noren);
+  text-decoration: none;
+}
+.o-banner__link::after { content: "　→"; color: var(--kuchinashi); }
+html[lang="en"] .o-banner__link::after { content: "  →"; }
+.o-banner__link:hover, .o-banner__link:focus-visible { background: color-mix(in srgb, var(--kuchinashi) 18%, transparent); }
+.o-banner__note { margin: 1rem 0 0; font-size: .75rem; color: var(--enso); }
+@media (min-width: 720px) {
+  .o-banner__inner { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(2rem, 4vw, 3.5rem); align-items: center; padding-block: 2.5rem; }
+  .o-banner__photo img { aspect-ratio: 1; }
+}

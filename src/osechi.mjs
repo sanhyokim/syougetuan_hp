@@ -18,6 +18,7 @@ function tokens(lang, o) {
     pickupDate: ja ? jaDateKanji(o.pickup.date) : enDateShort(o.pickup.date),
     pickupTime: ja ? kanjiTime(o.pickup.open) : englishTime(o.pickup.open),
     orderStart: ja ? jaDate(o.order.start) : enDate(o.order.start),
+    orderEnd: ja ? jaDate(o.order.end) : enDate(o.order.end),
     box: o.box[lang],
     count: ja ? kanjiNumber(itemCount(o)) : itemCount(o),
     limit: o.limit,
@@ -101,6 +102,35 @@ function hero(lang, c, ctx, tk) {
         <p class="o-hero__line">${esc(fill(L.heroLine, tk))}</p>
         <p class="o-hero__meta">${meta.join("<br>")}</p>
       </section>`;
+}
+
+// ---------------------------------------------------------------- トップページの案内（公開中だけ）
+export function osechiBanner(lang, c, ctx) {
+  if (c.seasonalPage.status !== "open") return "";
+  const o = c.osechi;
+  const L = o.labels[lang];
+  const tk = tokens(lang, o);
+  const p = o.photos.hero;
+  const size = ctx.sizes[p.src];
+  const href = `${ctx.root}${c.seasonalPage.path}`;
+  const name = lang === "ja" ? `「${esc(o.name.ja)}」` : esc(o.name.en);
+  const box = lang === "ja" ? `${esc(o.box.ja)}　${esc(o.servings.ja)}` : `${esc(o.box.en)}, ${esc(o.servings.en.toLowerCase())}`;
+  const limit = esc(fill(L.quantityText, tk));
+  const order = fill(esc(L.banner.order), { orderStart: nw(tk.orderStart), orderEnd: nw(tk.orderEnd) });
+  return `
+    <section class="o-banner" aria-labelledby="osechi-banner-h">
+      <div class="o-banner__inner">
+        ${size ? `<a class="o-banner__photo" href="${href}" tabindex="-1" aria-hidden="true"><img src="${ctx.base}${esc(p.src)}" alt="" width="${size.width}" height="${size.height}" loading="lazy" decoding="async"></a>` : ""}
+        <div class="o-banner__text">
+          <p class="o-banner__kicker">${esc(o.series[lang])}</p>
+          <h2 id="osechi-banner-h" class="o-banner__name">${name}</h2>
+          <p class="o-banner__meta">${box}<br>${priceText(lang, o)}${lang === "ja" ? "・" : ", "}${limit}<br>${order}</p>
+          ${o.reserve.heroAbroad?.[lang] ? `<p class="o-banner__meta"><strong>${esc(o.reserve.heroAbroad[lang])}</strong></p>` : ""}
+          <p><a class="o-banner__link" href="${href}">${esc(L.banner.link)}</a></p>
+          ${size ? `<p class="o-banner__note">${esc(o.photoNote[lang])}</p>` : ""}
+        </div>
+      </div>
+    </section>`;
 }
 
 const paras = (arr) => arr.map((p) => `<p>${esc(p)}</p>`).join("\n          ");

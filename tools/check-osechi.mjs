@@ -20,6 +20,7 @@ for (const status of ["off", "open", "closed"]) {
   for (const home of ["index.html", "en/index.html"]) {
     const h = readFileSync(join(ROOT, home), "utf8");
     ok(h.includes('class="notice"') === (status === "open"), `${home} の告知帯: ${status === "open" ? "あり" : "なし"}`);
+    ok(h.includes('class="o-banner"') === (status === "open"), `${home} のおせち案内: ${status === "open" ? "あり" : "なし"}`);
     ok(/href="[^"]*osechi\//.test(h) === (status === "open"), `${home} のおせちへのリンク: ${status === "open" ? "あり" : "なし"}`);
   }
   for (const p of exists) {
