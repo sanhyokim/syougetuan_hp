@@ -54,6 +54,7 @@ export function jsonLd(lang, c, ctx) {
     },
     award: c.shop.award[lang],
     hasMap: ctx.mapLink,
+    ...(typeof c.shop.map?.lat === "number" ? { geo: { "@type": "GeoCoordinates", latitude: c.shop.map.lat, longitude: c.shop.map.lng } } : {}),
     potentialAction: {
       "@type": "ReserveAction",
       target: c.reservation.url[lang],

@@ -80,13 +80,16 @@ remember("assets/img/logo-sumi.png");
 [o.photos.hero, o.photos.mood, ...o.tiers.map((t) => t.photo)].forEach((p) => remember(p?.src));
 
 const q = encodeURIComponent(c.shop.mapQuery);
+// 住所だけだとピンが立たないことがあるので、緯度・経度があればそれで地図を出す
+const m = c.shop.map ?? {};
+const pin = typeof m.lat === "number" && typeof m.lng === "number" ? `${m.lat},${m.lng}` : null;
 const shared = {
   season,
   sizes,
   buildYear: now.getFullYear(),
   heroSrc: c.seasons[season].hero.src,
-  mapEmbed: `https://www.google.com/maps?q=${q}&output=embed`,
-  mapLink: `https://www.google.com/maps/search/?api=1&query=${q}`,
+  mapEmbed: `https://www.google.com/maps?q=${pin ?? q}&z=17&output=embed`,
+  mapLink: m.url || `https://www.google.com/maps/search/?api=1&query=${q}`,
 };
 
 const url = (path) => new URL(path, c.siteUrl).href;
