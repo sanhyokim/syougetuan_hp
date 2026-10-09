@@ -144,10 +144,19 @@ off／open／closed の三つの状態で作り直し、リンク切れ、告知
 
 ごあいさつの文の中に `{{seats}}` と書くと、席数（`shop.seats`）が「七席」「seven」の形で入ります。
 
-## 公開のしかた（GitHub Pages）
+## 確認用の公開（GitHub Pages）
 
-Settings → Pages → 「Deploy from a branch」で、公開するブランチと `/ (root)` を選びます。
-独自ドメインにする場合は、`siteUrl` もそのドメインに書き換えてください。
+Settings → Pages → 「Deploy from a branch」で、公開するブランチ（`claude/shogetsuan-site-m0jmbj`）と `/ (root)` を選びます。
+https://sanhyokim.github.io/syougetuan_hp/ で、ログインなしで誰でも見られます。
+
+確認のあいだは `site.config.json` の `noindex` が `true` なので、各ページに検索よけ（`<meta name="robots" content="noindex">`）が入り、Google などの検索には出ません。
+
+## 本番の公開（レンタルサーバー）
+
+1. `siteUrl` を本番の URL（例：`https://example.jp/`）に、`noindex` を `false` に書き換えて保存する
+2. 作り直しが終わったら、次のファイルとフォルダをサーバーの公開フォルダにそのまま上げる
+   `index.html`、`en/`、`osechi/`、`assets/`、`images/`、`sitemap.xml`、`robots.txt`
+3. GitHub Pages は Settings → Pages で止める（同じ内容が二か所に出ないように）
 
 ## 手元で確かめたいとき
 

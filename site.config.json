@@ -2,6 +2,8 @@
   "_使い方": "店舗情報・料金・営業時間・予約の規定はすべてこのファイルにあります。書き換えて保存（GitHub にコミット）すると、日本語と English のページ、検索エンジン向けの情報が自動で作り直されます。詳しくは README.md をご覧ください。",
 
   "siteUrl": "https://sanhyokim.github.io/syougetuan_hp/",
+  "noindex": true,
+  "_noindex": "true のあいだは、Google などの検索に出さない（確認用の公開のため）。本番のドメインで公開するときに false にします。",
 
   "shop": {
     "name": { "ja": "料理屋 昇月庵", "kana": "りょうりや しょうげつあん", "en": "Ryoriya Shogetsuan" },

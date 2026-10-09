@@ -85,7 +85,7 @@ export function head(lang, c, ctx, t, { title = t.title, description = t.descrip
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${esc(title)}</title>
+  <title>${esc(title)}</title>${c.noindex ? `\n  <meta name="robots" content="noindex, nofollow">` : ""}
   <meta name="description" content="${esc(description)}">
   <link rel="canonical" href="${esc(ctx.pageUrl)}">
   ${alternates}

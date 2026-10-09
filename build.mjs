@@ -163,7 +163,9 @@ ${entries}
 </urlset>
 `
 );
-writeFileSync(join(ROOT, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${url("sitemap.xml")}\n`);
+// 確認用の公開（noindex）のあいだは、各ページの meta robots で検索に出さない。
+// robots.txt で巡回を止めると meta が読まれないので、巡回は許したままサイトマップだけ外す
+writeFileSync(join(ROOT, "robots.txt"), c.noindex ? "User-agent: *\nAllow: /\n" : `User-agent: *\nAllow: /\n\nSitemap: ${url("sitemap.xml")}\n`);
 console.log("生成: sitemap.xml, robots.txt");
 console.log(`季節: ${season} ／ おせちページ: ${sp.status}${hasSeasonal ? `（全${itemCount(o)}品）` : ""}`);
 for (const w of warnings) console.warn(`注意: ${w}`);
