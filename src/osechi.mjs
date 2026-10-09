@@ -137,7 +137,7 @@ const paras = (arr) => arr.map((p) => `<p>${esc(p)}</p>`).join("\n          ");
 
 function greeting(lang, c) {
   const o = c.osechi;
-  const sign = [o.signature[lang], c.chef.name[lang]].filter(Boolean).join(lang === "ja" ? "　" : " ");
+  const sign = o.signature[lang];
   return `<section class="sec o-sec o-greeting" id="greeting" aria-labelledby="greeting-h">
       <div class="sec__inner">
         <h2 id="greeting-h">${esc(o.labels[lang].greeting)}</h2>
