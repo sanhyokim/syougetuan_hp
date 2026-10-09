@@ -428,11 +428,13 @@ html[lang="en"] .words { font-style: italic; font-size: 1.375rem; line-height: 1
 .words--vertical span:nth-child(2) { padding-inline-start: 2em; }
 .words--vertical span:nth-child(3) { padding-inline-start: 4em; }
 .kitchen__photo { margin-bottom: 0; }
+.kitchen__text { margin-top: 2.25rem; }
 @media (min-width: 960px) {
   .sec--kitchen h2 { grid-column: 2 / 8; }
   .kitchen__photo { grid-column: 2 / 9; grid-row: 2; }
   .words--vertical { grid-column: 10 / 12; grid-row: 2; justify-self: center; align-self: center; margin: 0; font-size: 1.5rem; }
   html[lang="en"] .words { grid-column: 9 / 13; grid-row: 2; align-self: center; margin: 0; }
+  .kitchen__text { grid-column: 2 / 8; grid-row: 3; margin-top: 2.5rem; }
 }
 
 /* ご予約 */

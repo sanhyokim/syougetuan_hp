@@ -136,6 +136,18 @@
     "words": {
       "ja": ["高価な食材に頼らず、", "素材の持ち味を重ねて", "一皿を組み立てる。"],
       "en": "Not leaning on costly ingredients, but layering one ingredient's character onto another's to build each dish."
+    },
+    "message": {
+      "ja": [
+        "お忙しいなか時間をつくって、暖簾をくぐってくださる。そのことを、いつもありがたく思っています。",
+        "料理は、その日に届いた瀬戸内の魚と、広島の季節のものを見て決めます。カウンター越しにお客様の様子を拝見しながら、一皿ずつ、頃合いを見てお出しします。",
+        "お帰りの際に、よい夜だったと思っていただけたら、何よりです。"
+      ],
+      "en": [
+        "You have made time in a busy life to step through our noren, and I am grateful for it every evening.",
+        "The menu is decided each day by what arrives: fish from the Seto Inland Sea and whatever the Hiroshima season brings. From across the counter I watch how each guest is getting on, and serve every dish when the moment is right.",
+        "If you leave thinking it was a good evening, that is all I could ask for."
+      ]
     }
   },
 
