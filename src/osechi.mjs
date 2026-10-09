@@ -115,7 +115,6 @@ export function osechiBanner(lang, c, ctx) {
   const href = `${ctx.root}${c.seasonalPage.path}`;
   const name = lang === "ja" ? `「${esc(o.name.ja)}」` : esc(o.name.en);
   const box = lang === "ja" ? `${esc(o.box.ja)}　${esc(o.servings.ja)}` : `${esc(o.box.en)}, ${esc(o.servings.en.toLowerCase())}`;
-  const limit = esc(fill(L.quantityText, tk));
   const order = fill(esc(L.banner.order), { orderStart: nw(tk.orderStart), orderEnd: nw(tk.orderEnd) });
   return `
     <section class="o-banner" aria-labelledby="osechi-banner-h">
@@ -124,7 +123,7 @@ export function osechiBanner(lang, c, ctx) {
         <div class="o-banner__text">
           <p class="o-banner__kicker">${esc(o.series[lang])}</p>
           <h2 id="osechi-banner-h" class="o-banner__name">${name}</h2>
-          <p class="o-banner__meta">${box}<br>${limit}<br>${order}</p>
+          <p class="o-banner__meta">${box}<br>${order}</p>
           ${o.reserve.heroAbroad?.[lang] ? `<p class="o-banner__meta"><strong>${esc(o.reserve.heroAbroad[lang])}</strong></p>` : ""}
           <p><a class="o-banner__link" href="${href}">${esc(L.banner.link)}</a></p>
           ${size ? `<p class="o-banner__note">${esc(o.photoNote[lang])}</p>` : ""}
