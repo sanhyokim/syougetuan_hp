@@ -12,4 +12,16 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://sanhyokim.github.io/syougetuan_hp/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://sanhyokim.github.io/syougetuan_hp/"/>
   </url>
+  <url>
+    <loc>https://sanhyokim.github.io/syougetuan_hp/osechi/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://sanhyokim.github.io/syougetuan_hp/osechi/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sanhyokim.github.io/syougetuan_hp/en/osechi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sanhyokim.github.io/syougetuan_hp/osechi/"/>
+  </url>
+  <url>
+    <loc>https://sanhyokim.github.io/syougetuan_hp/en/osechi/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://sanhyokim.github.io/syougetuan_hp/osechi/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sanhyokim.github.io/syougetuan_hp/en/osechi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sanhyokim.github.io/syougetuan_hp/osechi/"/>
+  </url>
 </urlset>

@@ -203,7 +203,7 @@
 
   "seasonalPage": {
     "_説明": "おせちページの公開状態。\"off\"（出さない）／\"open\"（受付中）／\"closed\"（締切）のどれかにします。文言・価格・日程は osechi.json にあります。",
-    "status": "off",
+    "status": "open",
     "path": "osechi/"
   }
 }
