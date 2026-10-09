@@ -286,6 +286,7 @@ function kitchen(lang, c, ctx, t) {
         <h2 id="kitchen-h">${esc(t.kitchen.heading)}</h2>
         ${words}
         ${photo(lang, c, ctx, "kitchen", { cls: "kitchen__photo" })}
+        ${c.chef.message?.[lang]?.length ? `<div class="kitchen__text">\n          ${paras(c.chef.message[lang])}\n        </div>` : ""}
       </div>
     </section>`;
 }
