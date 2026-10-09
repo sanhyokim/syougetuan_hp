@@ -20,6 +20,7 @@
       "ja": [],
       "en": []
     },
+    "parking": { "ja": "", "en": "" },
     "landmark": {
       "ja": "白い暖簾が目印です。",
       "en": "Look for the white noren curtain over the door."
@@ -27,11 +28,35 @@
     "tel": "082-259-3098",
     "telIntl": "+81-82-259-3098",
     "seats": 7,
+    "privateHire": {
+      "ja": "貸切のご相談は、お電話で承ります。",
+      "en": "To book the whole counter for a private party, please call us."
+    },
+    "celebration": { "ja": "", "en": "" },
     "instagram": "",
     "mapQuery": "広島県広島市中区小町3-6",
     "award": {
       "ja": "ミシュランガイド広島・愛媛 2018 特別版 二つ星",
       "en": "Two MICHELIN Stars, The MICHELIN Guide Hiroshima & Ehime 2018 Special Edition"
+    }
+  },
+
+  "greeting": {
+    "ja": {
+      "lead": "日が暮れてから、月が昇るまで。",
+      "body": [
+        "昇月庵は、そのひとときをカウンターでお過ごしいただく料理屋です。",
+        "暖簾をくぐったら、あとはおまかせください。"
+      ],
+      "origin": ""
+    },
+    "en": {
+      "lead": "From dusk until the moon rises.",
+      "body": [
+        "Shogetsuan is a small restaurant where you spend those hours at the counter.",
+        "Once you step through the noren, leave the rest to us."
+      ],
+      "origin": ""
     }
   },
 
@@ -58,7 +83,9 @@
     "change": {
       "ja": "仕入れの状況により、内容と料金が変わることがあります。",
       "en": "The menu and price may change with what the market offers."
-    }
+    },
+    "drinks": { "ja": "", "en": "" },
+    "sources": { "ja": "", "en": "" }
   },
 
   "payment": {
@@ -78,6 +105,11 @@
     "siteName": { "ja": "予約サイト", "en": "booking site" },
     "arriveMinutesBefore": 5,
     "cancellation": { "dayBefore": 50, "sameDay": 100 },
+    "phoneHours": { "ja": "", "en": "" },
+    "bookingWindow": { "ja": "", "en": "" },
+    "start": { "ja": "", "en": "" },
+    "duration": { "ja": "", "en": "" },
+    "overseas": { "ja": "", "en": "" },
     "policy": {
       "ja": [
         { "label": "ご来店の時刻", "text": "ご予約の時刻の{{arrive}}分前までにお越しください。ご連絡のないまま予約の時刻を過ぎた場合は、ご予約を自動的に取り消させていただきます。" },
@@ -111,9 +143,10 @@
       "ja": "東京の星付きの和食店で修業を重ね、広島に昇月庵を構えました。",
       "en": "The chef trained at a Michelin-starred Japanese restaurant in Tokyo before opening Shogetsuan in Hiroshima."
     },
+    "okamiName": { "ja": "", "en": "" },
     "okami": {
-      "ja": "客席では、おかみがお世話をいたします。",
-      "en": "At the counter, the okami looks after our guests."
+      "ja": "客席でお客様をお迎えし、お世話をいたします。",
+      "en": "She welcomes you and looks after you at the counter."
     }
   },
 
@@ -133,6 +166,10 @@
     "kitchen": {
       "src": "assets/img/kitchen.jpg",
       "alt": { "ja": "白木のカウンターの向こう、板場に並んで立つ白衣の料理長と着物のおかみ", "en": "The chef in white and the okami in kimono standing side by side behind the pale wooden counter" }
+    },
+    "entrance": {
+      "src": "assets/img/entrance.jpg",
+      "alt": { "ja": "白い暖簾の掛かった入口と格子戸", "en": "The entrance: a white noren curtain over a latticed door" }
     }
   },
 

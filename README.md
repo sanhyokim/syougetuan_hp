@@ -46,7 +46,7 @@
 
 季節写真の背景の色（十八時の空の暗さ）は、写真と関係なく季節で自動に変わります。
 
-ほかの写真は `photos` で同じように差し替えます（`omakase` がおまかせ、`utsuwa` が器と盛り、`seats` がカウンター、`kitchen` が板場）。
+ほかの写真は `photos` で同じように差し替えます（`omakase` がおまかせ、`utsuwa` が器と盛り、`seats` がカウンター、`kitchen` が板場、`entrance` がアクセスの入口の写真）。
 **料理長とおかみの写真**は、`photos.kitchen.src` に写真の場所を書くと「写真を準備中です」の枠と入れ替わります。
 写真を変えたら、`alt`（写真の説明文）も日本語と英語で書き換えてください。
 
@@ -122,14 +122,29 @@ off／open／closed の三つの状態で作り直し、リンク切れ、告知
 
 空のままでも表示は崩れません。埋めるとその場所に出ます。
 
-| 項目 | 場所 |
-|---|---|
-| 料理長のお名前 | `chef.name` |
-| 料理長のお言葉（いまは仮の文） | `chef.words` |
-| 季節の炊き込みご飯の一行 | `seasons.<季節>.rice` |
-| 電停からの道順 | `shop.directions`（一行ずつ） |
-| Instagram の URL | `shop.instagram`（臨時休業のお知らせ先として表示） |
-| 独自ドメイン | `siteUrl`（いまは GitHub Pages の URL） |
+| 項目 | 場所 | 出る場所 |
+|---|---|---|
+| ごあいさつの文（いまは下書き） | `greeting.ja` / `greeting.en` の `lead`・`body` | トップのすぐ後 |
+| 店名の由来・開業の年 | `greeting.<言語>.origin` | ごあいさつの本文の後 |
+| 料理長のお名前 | `chef.name` | ごあいさつの署名と板場 |
+| おかみのお名前 | `chef.okamiName` | ごあいさつの署名と板場 |
+| 料理長のお言葉（いまは仮の文） | `chef.words` | 板場 |
+| 料理長の経歴・おかみの一言 | `chef.career` / `chef.okami` | 板場の写真の下 |
+| お飲み物 | `course.drinks` | おまかせ |
+| 素材の産地・仕入れ先 | `course.sources` | おまかせ |
+| 季節の炊き込みご飯の一行 | `seasons.<季節>.rice` | おまかせ |
+| 記念日にできること | `shop.celebration` | カウンター（貸切の一行の下） |
+| 電話の受付時間 | `reservation.phoneHours` | ご予約（English は日本時間と書く） |
+| 何か月先まで受けるか | `reservation.bookingWindow` | ご予約 |
+| 始まりの時刻 | `reservation.start` | ご予約 |
+| お時間（所要時間） | `reservation.duration` | ご予約 |
+| 海外からの予約方法 | `reservation.overseas.en` | English のご予約 |
+| 電停からの道順 | `shop.directions`（一行ずつ） | アクセス |
+| 駐車場 | `shop.parking` | アクセス |
+| Instagram の URL | `shop.instagram`（臨時休業のお知らせ先として表示） | アクセス |
+| 独自ドメイン | `siteUrl`（いまは GitHub Pages の URL） | — |
+
+ごあいさつの文の中に `{{seats}}` と書くと、席数（`shop.seats`）が「七席」「seven」の形で入ります。
 
 ## 公開のしかた（GitHub Pages）
 
