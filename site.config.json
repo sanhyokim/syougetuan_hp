@@ -38,10 +38,12 @@
     "instagram": "",
     "mapQuery": "広島県広島市中区小町3-6",
     "map": {
-      "_説明": "地図のピンの位置（緯度・経度）と「Google マップで開く」のリンク。Google マップで店を開き「共有」で出るリンクを url に入れます。",
+      "_説明": "地図の位置と、ピンを押したときに出る Google マップの店の情報。url は Google マップで店を開き「共有」で出るリンク。place・lat・lng はそのリンクの行き先の URL にある値（0x…:0x… と !3d・!4d の数字）。Google マップの「地図を埋め込む」で出る src を embed に入れると、そちらを優先します。",
+      "place": "0x355aa213ce9d836f:0x876da014df333287",
       "lat": 34.3886329,
       "lng": 132.4569011,
-      "url": "https://maps.app.goo.gl/EBBgRc9TsMCTP4fp6"
+      "url": "https://maps.app.goo.gl/EBBgRc9TsMCTP4fp6",
+      "embed": ""
     },
     "award": {
       "ja": "ミシュランガイド広島・愛媛 2018 特別版 二つ星",

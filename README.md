@@ -31,7 +31,7 @@
 | 予約の規定の文章 | `reservation.policy` | 日本語と英語の両方。`{{cancelDayBefore}}` などは数字が自動で入る |
 | 電話番号 | `shop.tel` / `shop.telIntl` | 国内向けと海外向け |
 | 予約サイトの URL | `reservation.url` | 日本語用と英語用 |
-| 地図のピンと「Google マップで開く」 | `shop.map` | `lat`・`lng`（緯度・経度）と、Google マップの「共有」で出るリンク（`url`） |
+| 地図のピンと「Google マップで開く」 | `shop.map` | Google マップの「共有」で出るリンク（`url`）と、その行き先の URL にある店の ID（`place`）・緯度・経度。「地図を埋め込む」の src を `embed` に入れると、そちらが優先されます |
 
 開店時刻を変えると、トップの「十八時、暖簾を掛けます。」も自動で変わります。
 

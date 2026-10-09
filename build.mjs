@@ -80,15 +80,24 @@ remember("assets/img/logo-sumi.png");
 [o.photos.hero, o.photos.mood, ...o.tiers.map((t) => t.photo)].forEach((p) => remember(p?.src));
 
 const q = encodeURIComponent(c.shop.mapQuery);
-// 住所だけだとピンが立たないことがあるので、緯度・経度があればそれで地図を出す
+// 地図。住所の文字だけではピンが立たず、緯度・経度だけではピンに店の情報が出ないので、
+// Google マップの店の ID（place）があれば、「地図を埋め込む」と同じ形の URL を組み立てる
 const m = c.shop.map ?? {};
-const pin = typeof m.lat === "number" && typeof m.lng === "number" ? `${m.lat},${m.lng}` : null;
+const hasPin = typeof m.lat === "number" && typeof m.lng === "number";
+const b64 = (s) => Buffer.from(s, "utf8").toString("base64url");
+function mapEmbed(lang) {
+  if (m.embed) return m.embed;
+  const hl = lang === "ja" ? "!1sja!2sjp" : "!1sen!2sjp";
+  if (m.place && hasPin)
+    return `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1646!2d${m.lng}!3d${m.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s${encodeURIComponent(m.place)}!2z${b64(c.shop.name.ja)}!5e0!3m2${hl}!4v1791500000000!5m2${hl}`;
+  return `https://www.google.com/maps?q=${hasPin ? `${m.lat},${m.lng}` : q}&z=17&output=embed`;
+}
 const shared = {
   season,
   sizes,
   buildYear: now.getFullYear(),
   heroSrc: c.seasons[season].hero.src,
-  mapEmbed: `https://www.google.com/maps?q=${pin ?? q}&z=17&output=embed`,
+  mapEmbed: { ja: mapEmbed("ja"), en: mapEmbed("en") },
   mapLink: m.url || `https://www.google.com/maps/search/?api=1&query=${q}`,
 };
 

@@ -371,7 +371,7 @@ function access(lang, c, ctx, t) {
       <div class="sec__inner">
         <h2 id="access-h">${esc(A.heading)}</h2>
         <div class="map">
-          <iframe src="${esc(ctx.mapEmbed)}" title="${esc(A.map)}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <iframe src="${esc(ctx.mapEmbed[lang])}" title="${esc(A.map)}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <p><a href="${esc(ctx.mapLink)}" target="_blank" rel="noopener">${esc(A.mapLink)}<span class="sr-only">${esc(t.reserve.newTab)}</span></a></p>
         </div>
         ${entrance}
