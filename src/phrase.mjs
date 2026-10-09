@@ -49,10 +49,11 @@ function breakText(text) {
   return out + text.slice(start);
 }
 
-// 生成した日本語ページの段落・説明・見出しに <wbr> を入れる。縦書きの店名と料理長の言葉は対象外
+// 生成した日本語ページの段落・説明・見出し・箇条・表に <wbr> を入れる。縦書きの店名と料理長の言葉は対象外
 export function phraseBreaks(html) {
-  return html.replace(/<(p|dd|h1|h2|h3)(\s[^>]*)?>([\s\S]*?)<\/\1>/g, (all, tag, attrs = "", inner) => {
+  return html.replace(/<(p|dd|h1|h2|h3|li|td|caption)(\s[^>]*)?>([\s\S]*?)<\/\1>/g, (all, tag, attrs = "", inner) => {
     if (/class="[^"]*\b(words|hero-name)\b/.test(attrs)) return all;
+    if (tag === "li" && /<a\s/.test(inner)) return all; // ナビの項目は短いので触らない
     const body = inner
       .split(/(<[^>]+>|&[#a-zA-Z0-9]+;)/)
       .map((part) => (part.startsWith("<") || part.startsWith("&") ? part : breakText(part)))

@@ -202,21 +202,8 @@
   },
 
   "seasonalPage": {
-    "state": "off",
-    "path": "osechi/",
-    "nav": { "ja": "おせち", "en": "Osechi" },
-    "title": { "ja": "おせちのご予約", "en": "New Year osechi" },
-    "notice": {
-      "ja": "おせちのご予約を承っております。",
-      "en": "We are taking orders for New Year osechi."
-    },
-    "closedNotice": {
-      "ja": "おせちのご予約は締め切りました。",
-      "en": "Osechi orders are now closed."
-    },
-    "body": {
-      "ja": ["内容とお申し込みの方法は、追ってこのページでご案内します。"],
-      "en": ["Details and how to order will be posted on this page."]
-    }
+    "_説明": "おせちページの公開状態。\"off\"（出さない）／\"open\"（受付中）／\"closed\"（締切）のどれかにします。文言・価格・日程は osechi.json にあります。",
+    "status": "open",
+    "path": "osechi/"
   }
 }
