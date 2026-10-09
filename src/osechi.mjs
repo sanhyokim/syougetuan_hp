@@ -124,7 +124,7 @@ export function osechiBanner(lang, c, ctx) {
         <div class="o-banner__text">
           <p class="o-banner__kicker">${esc(o.series[lang])}</p>
           <h2 id="osechi-banner-h" class="o-banner__name">${name}</h2>
-          <p class="o-banner__meta">${box}<br>${priceText(lang, o)}${lang === "ja" ? "・" : ", "}${limit}<br>${order}</p>
+          <p class="o-banner__meta">${box}<br>${limit}<br>${order}</p>
           ${o.reserve.heroAbroad?.[lang] ? `<p class="o-banner__meta"><strong>${esc(o.reserve.heroAbroad[lang])}</strong></p>` : ""}
           <p><a class="o-banner__link" href="${href}">${esc(L.banner.link)}</a></p>
           ${size ? `<p class="o-banner__note">${esc(o.photoNote[lang])}</p>` : ""}
