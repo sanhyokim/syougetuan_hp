@@ -89,8 +89,8 @@
   "limitUnit": { "ja": "組", "en": "sets" },
 
   "order": {
-    "start": "2026-11-01",
-    "end": "2026-12-20",
+    "start": "2026-11-02",
+    "end": "2026-12-19",
     "endNote": { "ja": "限定数に達し次第、締め切ります。", "en": "Orders close early once all sets are taken." },
     "hours": { "open": "15:00", "close": "17:30" },
     "closedDays": { "ja": "日曜・祝日を除く", "en": "except Sundays and national holidays" }
@@ -103,9 +103,10 @@
     "place": { "ja": "店頭にて（配送はいたしません）", "en": "In person at the restaurant (we do not deliver)" }
   },
 
+  "paymentDue": "2026-12-21",
   "payment": {
-    "ja": "お受け取りの際に店頭で。現金、VISA／JCB／AMEX／Diners",
-    "en": "At the restaurant when you collect. Cash, VISA, JCB, AMEX, Diners"
+    "ja": "ご予約のあと、{{paymentDue}}までに店頭で前払い。現金、VISA／JCB／AMEX／Diners",
+    "en": "In advance at the restaurant, by {{paymentDue}}. Cash, VISA, JCB, AMEX, Diners"
   },
   "bestBefore": "2027-01-01",
   "storage": {
@@ -116,7 +117,7 @@
     "ja": "召し上がる30分ほど前に冷蔵庫から出すと、味と香りが開きます。温め直しはいりません。",
     "en": "Take it out of the fridge about 30 minutes before eating, so the flavours open up. No reheating is needed."
   },
-  "cancelFreeUntil": "2026-12-20",
+  "cancelFreeUntil": "2026-12-21",
 
   "greeting": {
     "ja": [
@@ -267,13 +268,13 @@
 
   "notes": {
     "ja": [
-      { "label": "お取り消し", "text": "{{cancelFreeUntil}}までのお取り消しは無料です。それ以降のお取り消しは、代金の全額を申し受けます。" },
-      { "label": "受け取りの時刻を過ぎる場合", "text": "お約束の時刻に遅れそうなときは、お電話ください。{{pickupClose}}を過ぎてもご連絡がない場合、要冷蔵のお重を店でお預かりし続けることができないため、代金の全額を申し受けます。" },
+      { "label": "お取り消し", "text": "{{cancelFreeUntil}}までのお取り消しは無料です（お支払い済みの代金はお返しします）。それ以降のお取り消しは、代金をお返しできません。" },
+      { "label": "受け取りの時刻を過ぎる場合", "text": "お約束の時刻に遅れそうなときは、お電話ください。{{pickupClose}}を過ぎてもご連絡がない場合、要冷蔵のお重を店でお預かりし続けることができないため、代金はお返しできません。" },
       { "label": "返品・交換", "text": "お渡しの朝に仕上げる要冷蔵の料理で、お持ち帰りのあとの保管の状態を店で確かめられないため、お受け取り後の返品・交換はお受けしておりません。" }
     ],
     "en": [
-      { "label": "Cancellation", "text": "Cancellation is free until {{cancelFreeUntil}}. After that date, the full price is charged." },
-      { "label": "If you are running late", "text": "If you may be late, please call us. If we have not heard from you by {{pickupClose}}, the full price is charged, as we cannot keep a chilled box at the restaurant beyond that time." },
+      { "label": "Cancellation", "text": "Cancellation is free until {{cancelFreeUntil}}, and any payment is refunded. After that date, payment cannot be refunded." },
+      { "label": "If you are running late", "text": "If you may be late, please call us. If we have not heard from you by {{pickupClose}}, payment cannot be refunded, as we cannot keep a chilled box at the restaurant beyond that time." },
       { "label": "Returns", "text": "Each box is finished on the morning of collection and must be kept chilled. As we cannot know how it is stored once it leaves us, we cannot accept returns or exchanges." }
     ]
   },
@@ -284,6 +285,11 @@
     "abroad": {
       "ja": "",
       "en": "Collection in person at the restaurant in Hiroshima, Japan only. We cannot ship within Japan or abroad. Orders are taken in Japanese."
+    },
+    "flowLead": { "ja": "受付の流れ", "en": "How it works" },
+    "flow": {
+      "ja": ["お電話でご予約（{{orderStart}}〜{{orderEnd}}）", "{{paymentDue}}までに、店頭でお支払い", "{{pickupDay}}、店頭でお受け取り（{{pickupOpen}}〜{{pickupClose}}）"],
+      "en": ["Order by telephone ({{orderStart}} – {{orderEnd}})", "Pay at the restaurant by {{paymentDue}}", "Collect at the restaurant on {{pickupDay}}, between {{pickupOpen}} and {{pickupClose}}"]
     },
     "askLead": { "ja": "お電話では、次の四つをお伺いします。", "en": "When you call, we will ask for:" },
     "ask": {

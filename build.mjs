@@ -42,7 +42,7 @@ const warnings = [];
 if (c.seasonalPage.status !== "off") {
   if (typeof o.price !== "number") problems.push("osechi.json の price は数字だけで書いてください（例: 30000）");
   if (typeof o.limit !== "number") problems.push("osechi.json の limit は数字だけで書いてください（例: 20）");
-  const dates = { "order.start": o.order?.start, "order.end": o.order?.end, "pickup.date": o.pickup?.date, bestBefore: o.bestBefore, cancelFreeUntil: o.cancelFreeUntil };
+  const dates = { "order.start": o.order?.start, "order.end": o.order?.end, "pickup.date": o.pickup?.date, bestBefore: o.bestBefore, cancelFreeUntil: o.cancelFreeUntil, paymentDue: o.paymentDue };
   for (const [k, v] of Object.entries(dates)) {
     if (!parseDate(v)) problems.push(`osechi.json の ${k} は "2026-12-31" の形の正しい日付にしてください（いま: ${v}）`);
   }
@@ -50,6 +50,8 @@ if (c.seasonalPage.status !== "off") {
     problems.push("osechi.json の order.start（受付開始）が order.end（締切）より後になっています");
   if (parseDate(o.order?.end) && parseDate(o.pickup?.date) && o.order.end > o.pickup.date)
     problems.push("osechi.json の order.end（締切）が pickup.date（受け渡し）より後になっています");
+  if (parseDate(o.paymentDue) && parseDate(o.pickup?.date) && o.paymentDue > o.pickup.date)
+    problems.push("osechi.json の paymentDue（お支払いの期限）が pickup.date（受け渡し）より後になっています");
   for (const k of ["open", "close"]) {
     if (!/^\d{2}:\d{2}$/.test(o.pickup?.[k] ?? "")) problems.push(`osechi.json の pickup.${k} は "11:00" の形にしてください`);
     if (!/^\d{2}:\d{2}$/.test(o.order?.hours?.[k] ?? "")) problems.push(`osechi.json の order.hours.${k} は "15:00" の形にしてください`);
