@@ -19,6 +19,8 @@ function tokens(lang, o) {
     pickupTime: ja ? kanjiTime(o.pickup.open) : englishTime(o.pickup.open),
     orderStart: ja ? jaDate(o.order.start) : enDate(o.order.start),
     orderEnd: ja ? jaDate(o.order.end) : enDate(o.order.end),
+    paymentDue: ja ? jaDate(o.paymentDue) : enDate(o.paymentDue),
+    pickupDay: ja ? jaDate(o.pickup.date) : enDate(o.pickup.date),
     box: o.box[lang],
     count: ja ? kanjiNumber(itemCount(o)) : itemCount(o),
     limit: o.limit,
@@ -208,7 +210,7 @@ function details(lang, c) {
     [L.contents, `${esc(o.box[lang])}${ja ? "／" : ", "}${esc(ja ? o.servings.ja : o.servings.en.toLowerCase())}${ja ? `／${nw(`全${itemCount(o)}品`)}` : `, ${itemCount(o)} dishes`}`],
     [L.orderPeriod, `${range(lang, d(o.order.start), d(o.order.end))}<br><span class="note">${esc(o.order.endNote[lang])}</span>`],
     [L.pickup, `${nw(d(o.pickup.date))}${ja ? "　" : ", "}<span class="num">${range(lang, time(o.pickup.open), time(o.pickup.close))}</span><br>${esc(o.pickup.place[lang])}`],
-    [L.payment, esc(o.payment[lang])],
+    [L.payment, esc(fill(o.payment[lang], tokens(lang, o)))],
     [L.bestBefore, esc(d(o.bestBefore))],
     [L.storage, esc(o.storage[lang])],
     [L.howToEat, esc(o.howToEat[lang])],
@@ -305,6 +307,10 @@ function reserve(lang, c, tk) {
         </dl>
         </div>
         <div class="o-ask">
+          <p class="o-ask__lead">${esc(R.flowLead[lang])}</p>
+          <ol class="o-flow">
+            ${R.flow[lang].map((a) => `<li>${esc(fill(a, tk))}</li>`).join("\n            ")}
+          </ol>
           <p class="o-ask__lead">${esc(R.askLead[lang])}</p>
           <ol>
             ${R.ask[lang].map((a) => `<li>${esc(fill(a, tk))}</li>`).join("\n            ")}
